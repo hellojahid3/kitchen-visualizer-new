@@ -26,7 +26,7 @@ const TextCenter = styled.div`
 `;
 
 const ErrorHeading = styled.h1`
-  font-size: 6.5rem;
+  font-size: 4rem;
   font-weight: 900;
   line-height: 1;
   color: #e5e7eb;
@@ -38,9 +38,13 @@ const ErrorHeading = styled.h1`
 
 const ErrorMessage = styled.p`
   color: #6b7280;
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.3em;
   margin-bottom: 1.25rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+  }
 `;
 
 const ButtonGroup = styled.div`
