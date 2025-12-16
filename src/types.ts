@@ -1,3 +1,10 @@
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
 export type Toolbar = {
   id: string;
   name: string;

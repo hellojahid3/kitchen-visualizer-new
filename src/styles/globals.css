@@ -1,5 +1,5 @@
 :root {
-  --font-sans: 'Poppins', sans-serif;
+  --font-sans: 'DM Sans', sans-serif;
   --color-primary: #1696e7;
   --color-secondary: #2b96cc;
   --color-text: #313131;
@@ -25,11 +25,11 @@
 
   --color-input-label-color: #313131;
 
-  --button-bg: #3b3937;
+  --button-bg: #4f46e5;
   --button-color: #fff;
   --button-hover-bg: #505050;
   --button-hover-color: #fff;
-  --button-border-radius: 0.225rem;
+  --button-border-radius: 0.125rem;
   --button-font-weight: 500;
   --button-font-size: 0.875rem;
   --button-line-height: calc(1.25 / var(--button-font-size));
@@ -301,4 +301,16 @@ template {
 
 [hidden] {
   display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
