@@ -9,11 +9,9 @@ export interface KitchenState {
   backgroundImageUrl: string;
   thumbnailUrl: string;
   gaMeasurementId?: string;
-  company: {
-    name: string;
-    slug: string;
-    logo: string;
-  };
+  companyName: string;
+  companyLogoUrl: string;
+  companyWebsiteUrl: null;
 }
 
 const initialState: KitchenState = {
@@ -24,11 +22,9 @@ const initialState: KitchenState = {
   backgroundImageUrl: '',
   thumbnailUrl: '',
   gaMeasurementId: '',
-  company: {
-    name: '',
-    slug: '',
-    logo: '',
-  },
+  companyName: '',
+  companyLogoUrl: '',
+  companyWebsiteUrl: null,
 };
 
 export const kitchenSlice = createSlice({

@@ -4,12 +4,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { KitchenComponents, Selection, Toolbar } from '@/types';
 
 export interface VisualizerState {
+  isPanMode: boolean;
+  showUiElements: boolean;
+  openProjectSave: boolean;
+  openSelectedComponents: boolean;
   components: KitchenComponents;
   selections: Selection;
   toolbars: Toolbar[];
 }
 
 const initialState: VisualizerState = {
+  isPanMode: false,
+  showUiElements: true,
+  openProjectSave: false,
+  openSelectedComponents: false,
   components: {
     stones: [],
     styles: [],
@@ -60,9 +68,29 @@ export const visualizerSlice = createSlice({
         ...action.payload,
       };
     },
+    setIsPanMode: (state, action: PayloadAction<boolean>) => {
+      state.isPanMode = action.payload;
+    },
+    setShowUiElements: (state, action: PayloadAction<boolean>) => {
+      state.showUiElements = action.payload;
+    },
+    setOpenProjectSave: (state, action: PayloadAction<boolean>) => {
+      state.openProjectSave = action.payload;
+    },
+    setOpenSelectedComponents: (state, action: PayloadAction<boolean>) => {
+      state.openSelectedComponents = action.payload;
+    },
   },
 });
 
-export const { setComponents, setToolbars, setSelections } = visualizerSlice.actions;
+export const {
+  setComponents,
+  setToolbars,
+  setSelections,
+  setIsPanMode,
+  setShowUiElements,
+  setOpenProjectSave,
+  setOpenSelectedComponents,
+} = visualizerSlice.actions;
 
 export default visualizerSlice.reducer;

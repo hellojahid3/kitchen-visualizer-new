@@ -5,6 +5,11 @@ declare global {
   }
 }
 
+export type Position = {
+  x: number;
+  y: number;
+};
+
 export type Toolbar = {
   id: string;
   name: string;
@@ -18,6 +23,7 @@ export type Component = {
   id: string;
   name: string;
   thumbnailUrl: string;
+  maskImageUrl?: string;
   sortOrder: number;
   isDefault: boolean;
   dependencies: string[] | null;

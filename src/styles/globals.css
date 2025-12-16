@@ -221,6 +221,7 @@ p {
 
 a,
 button {
+  border-color: var(--color-border);
   color: var(--button-color);
   outline: medium none;
   -webkit-transition: all 0.3s ease-out 0s;

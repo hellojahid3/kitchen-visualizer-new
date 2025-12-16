@@ -2,6 +2,7 @@
  * Visual Layer Index Constants
  */
 export const visualLayerIndex = {
+  backgroundImage: 0,
   worktop: 18,
   splashback: 19,
   baseCabinet: 23,
