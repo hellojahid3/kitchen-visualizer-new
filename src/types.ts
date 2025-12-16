@@ -47,7 +47,7 @@ export type KitchenComponents = {
   hostpots: Hostpot[];
 };
 
-export type Kitchen = {
+export type KitchenInfo = {
   id: string;
   name: string;
   shape: string;
@@ -60,6 +60,9 @@ export type Kitchen = {
     slug: string;
     logo: string;
   };
+};
+
+export type Kitchen = KitchenInfo & {
   toolbars: Toolbar[];
   components: KitchenComponents;
 };
