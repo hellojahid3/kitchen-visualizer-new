@@ -62,11 +62,9 @@ export type KitchenInfo = {
   backgroundImageUrl: string;
   thumbnailUrl: string;
   gaMeasurementId?: string;
-  company: {
-    name: string;
-    slug: string;
-    logo: string;
-  };
+  companyName: string;
+  companyLogoUrl: string;
+  companyWebsiteUrl: null;
 };
 
 export type Kitchen = KitchenInfo & {

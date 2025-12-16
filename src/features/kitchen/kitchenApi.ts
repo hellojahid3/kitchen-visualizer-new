@@ -8,7 +8,7 @@ export const kitchenApi = createApi({
   tagTypes: ['Kitchen'],
   endpoints: builder => ({
     getKitchen: builder.query<Kitchen, { subdomain: string; kitchenId: string }>({
-      query: ({ subdomain, kitchenId }) => `/${subdomain}/${kitchenId}/data.json`,
+      query: ({ subdomain, kitchenId }) => `/${subdomain}/${kitchenId}.json`,
       providesTags: (_result, _error, { subdomain, kitchenId }) => [
         { type: 'Kitchen', id: `${subdomain}-${kitchenId}` },
       ],
