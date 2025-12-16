@@ -17,6 +17,7 @@ const ControlButtonStyled = styled.button<ControlButtonProps>`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s ease-in-out;
   border: none;
+  cursor: pointer;
 
   &:hover {
     background-color: #f3f4f6;
