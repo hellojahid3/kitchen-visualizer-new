@@ -42,7 +42,7 @@ export default function NotFound() {
   return (
     <Container>
       <NotFoundImage
-        src="/public/images/not-found.svg"
+        src="/images/not-found.svg"
         alt="Not Found"
       />
       <NotFoundSubtitle>Page Not Found</NotFoundSubtitle>
