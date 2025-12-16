@@ -86,7 +86,7 @@ export default function VisualizerCollapsibleLayout({ data }: VisualizerCollapsi
     <LayoutWrapper>
       <React.Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
         <LayoutSidebar>
-          <LayoutSidebarHeader canvasLayersRef={canvasLayersRef} />
+          <LayoutSidebarHeader />
           <LayoutSidebarContent />
         </LayoutSidebar>
       </React.Activity>
