@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import type { RootState } from '@/app/store';
 import { cn } from '@/lib/utils';
+import { VIEWPORT_CONFIG } from '../config';
 
 type CanvasLayerMaskImageProps = {
   canvasLayersRef: React.RefObject<HTMLDivElement | null>;
@@ -52,6 +55,7 @@ export default function CanvasLayerMaskImage({
   positionX = 0,
   positionY = 0,
 }: CanvasLayerMaskImageProps) {
+  const showUiElements = useSelector((state: RootState) => state.visualizer.showUiElements);
   const [isMounted, setIsMounted] = React.useState<boolean>(false);
   const imageRef = React.useRef<HTMLImageElement | null>(null);
 
@@ -74,17 +78,35 @@ export default function CanvasLayerMaskImage({
         newWidth = Math.round(containerHeight * imageAspectRatio);
       }
 
-      imageRef.current.style.setProperty('--layer-img-width', `${newWidth}px`);
-      imageRef.current.style.setProperty('--layer-img-height', `${newHeight}px`);
+      if (showUiElements) {
+        imageRef.current.style.setProperty('--layer-img-width', `${newWidth}px`);
+        imageRef.current.style.setProperty('--layer-img-height', `${newHeight}px`);
+      }
     }
-  }, [canvasLayersRef]);
+  }, [canvasLayersRef, showUiElements]);
 
   React.useEffect(() => {
     if (!isMounted) {
       setIsMounted(true);
       handleWindowResize();
     }
-  }, [isMounted, handleWindowResize]);
+  }, [handleWindowResize, isMounted]);
+
+  React.useEffect(() => {
+    if (isMounted && imageRef.current) {
+      if (showUiElements) {
+        handleWindowResize();
+
+        return;
+      }
+
+      imageRef.current.style.setProperty(
+        '--layer-img-width',
+        `calc(100% - ${VIEWPORT_CONFIG.fullscreenExtension}px)`
+      );
+      imageRef.current.style.setProperty('--layer-img-height', 'auto');
+    }
+  }, [handleWindowResize, isMounted, showUiElements]);
 
   React.useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
