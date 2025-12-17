@@ -12,3 +12,13 @@ export const visualLayerIndex = {
   crownMolding: 21,
   appliance: 20,
 };
+
+/**
+ * Splashback Types
+ */
+export const splashbackTypes = {
+  hob: 'Hob Splashback',
+  fullHeight: 'Full Height Splashback',
+  upstand: 'Upstand',
+  none: 'No Splashback',
+};
