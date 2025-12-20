@@ -1,10 +1,8 @@
-import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Activity, type CSSProperties, useCallback, useRef } from 'react';
+import { useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
-import { setKitchen } from '@/features/kitchen/kitchenSlice';
-import { setComponents, setToolbars } from '@/features/visualizer/visualizerSlice';
-import type { Kitchen, Position } from '@/types';
+import type { Position } from '@/types';
 import CanvasLayers from './components/CanvasLayers';
 import LayoutSidebarContent from './components/LayoutSidebarContent';
 import LayoutSidebarHeader from './components/LayoutSidebarHeader';
@@ -23,21 +21,17 @@ import {
   LayoutContentInnerWrapper,
   LayoutContentWrapper,
   LayoutSidebar,
+  LayoutSidebarWrapper,
   LayoutWrapper,
 } from './styles';
 
-type VisualizerCollapsibleLayoutProps = {
-  data: Kitchen;
-};
-
-export default function VisualizerCollapsibleLayout({ data }: VisualizerCollapsibleLayoutProps) {
-  const dispatch = useDispatch();
+export default function VisualizerCollapsibleLayout() {
   const visualizer = useSelector((state: RootState) => state.visualizer);
-  const canvasRef = React.useRef<HTMLDivElement>(null);
-  const canvasLayersRef = React.useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const canvasLayersRef = useRef<HTMLDivElement>(null);
   const containerSize = useContainerSize(canvasRef);
 
-  const calculateMaxOffsets = React.useCallback(
+  const calculateMaxOffsets = useCallback(
     (currentScale: number): Position => ({
       x:
         (containerSize.width * (currentScale - 1)) / (2 * currentScale) +
@@ -58,15 +52,7 @@ export default function VisualizerCollapsibleLayout({ data }: VisualizerCollapsi
     globalOffset,
   });
 
-  React.useEffect(() => {
-    const { toolbars, components, ...kitchenInfo } = data;
-
-    dispatch(setKitchen(kitchenInfo));
-    dispatch(setToolbars(toolbars));
-    dispatch(setComponents(components));
-  }, [data, dispatch]);
-
-  const handleWheel = React.useCallback(
+  const handleWheel = useCallback(
     (e: WheelEvent) => {
       if (!visualizer.isPanMode) return;
 
@@ -84,12 +70,14 @@ export default function VisualizerCollapsibleLayout({ data }: VisualizerCollapsi
 
   return (
     <LayoutWrapper>
-      <React.Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
-        <LayoutSidebar>
-          <LayoutSidebarHeader />
-          <LayoutSidebarContent />
-        </LayoutSidebar>
-      </React.Activity>
+      <Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
+        <LayoutSidebarWrapper>
+          <LayoutSidebar>
+            <LayoutSidebarHeader />
+            <LayoutSidebarContent />
+          </LayoutSidebar>
+        </LayoutSidebarWrapper>
+      </Activity>
 
       <LayoutContentWrapper>
         <LayoutContent>
@@ -108,7 +96,7 @@ export default function VisualizerCollapsibleLayout({ data }: VisualizerCollapsi
                     {
                       '--transform-scale': scale,
                       '--canvas-cursor': isDragging || visualizer.isPanMode ? 'grab' : 'default',
-                    } as React.CSSProperties
+                    } as CSSProperties
                   }
                 >
                   <CanvasLayers
@@ -118,13 +106,13 @@ export default function VisualizerCollapsibleLayout({ data }: VisualizerCollapsi
                 </Canvas>
               </CanvasWrapper>
 
-              <React.Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
+              <Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
                 <UIControls
                   resetView={resetView}
                   handleZoom={handleZoom}
                   scale={scale}
                 />
-              </React.Activity>
+              </Activity>
             </LayoutContentInnerWrapper>
           </LayoutContentInner>
         </LayoutContent>

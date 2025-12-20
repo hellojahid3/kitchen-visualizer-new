@@ -1,3 +1,12 @@
+import ProjectSavePopup from '@/components/project-save-popup';
+
 export default function LayoutSidebarContent() {
-  return <div>LayoutSidebarContent</div>;
+  return (
+    <div>
+      <ProjectSavePopup
+        open={false}
+        onClose={() => {}}
+      />
+    </div>
+  );
 }

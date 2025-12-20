@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 interface IconChevronDownProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }

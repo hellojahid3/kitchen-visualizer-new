@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
@@ -56,59 +56,45 @@ export default function CanvasLayerMaskImage({
   positionY = 0,
 }: CanvasLayerMaskImageProps) {
   const showUiElements = useSelector((state: RootState) => state.visualizer.showUiElements);
-  const [isMounted, setIsMounted] = React.useState<boolean>(false);
-  const imageRef = React.useRef<HTMLImageElement | null>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
 
-  const handleWindowResize = React.useCallback(() => {
+  const handleWindowResize = useCallback(() => {
     if (imageRef.current && canvasLayersRef.current) {
-      const containerWidth = canvasLayersRef.current.clientWidth;
-      const containerHeight = canvasLayersRef.current.clientHeight;
-
-      const imageAspectRatio = 16 / 9;
-      const containerAspectRatio = containerWidth / containerHeight;
-
-      let newWidth: number;
-      let newHeight: number;
-
-      if (imageAspectRatio > containerAspectRatio) {
-        newWidth = containerWidth;
-        newHeight = Math.round(containerWidth / imageAspectRatio);
-      } else {
-        newHeight = containerHeight;
-        newWidth = Math.round(containerHeight * imageAspectRatio);
-      }
-
       if (showUiElements) {
-        imageRef.current.style.setProperty('--layer-img-width', `${newWidth}px`);
+        const containerWidth = canvasLayersRef.current.clientWidth;
+        const containerHeight = canvasLayersRef.current.clientHeight;
+
+        const imageAspectRatio = 16 / 9;
+        const containerAspectRatio = containerWidth / containerHeight;
+
+        let newWidth: number;
+        let newHeight: number;
+
+        if (imageAspectRatio > containerAspectRatio) {
+          newWidth = containerWidth;
+          newHeight = Math.round(containerWidth / imageAspectRatio);
+        } else {
+          newHeight = containerHeight;
+          newWidth = Math.round(containerHeight * imageAspectRatio);
+        }
+
         imageRef.current.style.setProperty('--layer-img-height', `${newHeight}px`);
+        imageRef.current.style.setProperty('--layer-img-width', `${newWidth}px`);
+      } else {
+        imageRef.current.style.setProperty('--layer-img-height', 'auto');
+        imageRef.current.style.setProperty(
+          '--layer-img-width',
+          `calc(100% - ${VIEWPORT_CONFIG.fullscreenExtension}px)`
+        );
       }
     }
   }, [canvasLayersRef, showUiElements]);
 
-  React.useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-      handleWindowResize();
-    }
-  }, [handleWindowResize, isMounted]);
+  useEffect(() => {
+    handleWindowResize();
+  }, [handleWindowResize, showUiElements]);
 
-  React.useEffect(() => {
-    if (isMounted && imageRef.current) {
-      if (showUiElements) {
-        handleWindowResize();
-
-        return;
-      }
-
-      imageRef.current.style.setProperty(
-        '--layer-img-width',
-        `calc(100% - ${VIEWPORT_CONFIG.fullscreenExtension}px)`
-      );
-      imageRef.current.style.setProperty('--layer-img-height', 'auto');
-    }
-  }, [handleWindowResize, isMounted, showUiElements]);
-
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', handleWindowResize);
 
     return () => {

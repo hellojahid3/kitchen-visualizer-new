@@ -2,6 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { KitchenComponents, Selection, Toolbar } from '@/types';
+import { kitchenApi } from '../kitchen/kitchenApi';
 
 export interface VisualizerState {
   isPanMode: boolean;
@@ -80,6 +81,15 @@ export const visualizerSlice = createSlice({
     setOpenSelectedComponents: (state, action: PayloadAction<boolean>) => {
       state.openSelectedComponents = action.payload;
     },
+  },
+  extraReducers: builder => {
+    builder.addMatcher(kitchenApi.endpoints.getKitchen.matchFulfilled, (state, action) => {
+      return {
+        ...state,
+        components: action.payload.components,
+        toolbars: action.payload.toolbars,
+      };
+    });
   },
 });
 

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 interface IconXProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }

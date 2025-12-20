@@ -13,7 +13,7 @@ export const LayoutWrapper = styled.div`
   }
 `;
 
-export const LayoutSidebar = styled.aside`
+export const LayoutSidebarWrapper = styled.aside`
   background-color: #fff;
   width: 25%;
   height: 100%;
@@ -29,8 +29,14 @@ export const LayoutSidebar = styled.aside`
   }
 `;
 
+export const LayoutSidebar = styled.aside`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+`;
+
 export const LayoutSidebarHeaderContent = styled.header`
-  position: fixed;
   display: flex;
   align-items: center;
   gap: 0.5rem;

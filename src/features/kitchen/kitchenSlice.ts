@@ -1,6 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import { kitchenApi } from './kitchenApi';
+
 export interface KitchenState {
   id: string;
   name: string;
@@ -37,6 +39,23 @@ export const kitchenSlice = createSlice({
         ...action.payload,
       };
     },
+  },
+  extraReducers: builder => {
+    builder.addMatcher(kitchenApi.endpoints.getKitchen.matchFulfilled, (state, action) => {
+      return {
+        ...state,
+        id: action.payload.id,
+        name: action.payload.name,
+        shape: action.payload.shape,
+        description: action.payload.description,
+        backgroundImageUrl: action.payload.backgroundImageUrl,
+        thumbnailUrl: action.payload.thumbnailUrl,
+        gaMeasurementId: action.payload.gaMeasurementId,
+        companyName: action.payload.companyName,
+        companyLogoUrl: action.payload.companyLogoUrl,
+        companyWebsiteUrl: action.payload.companyWebsiteUrl,
+      };
+    });
   },
 });
 

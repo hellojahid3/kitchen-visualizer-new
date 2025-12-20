@@ -14,6 +14,7 @@ export type RootState = ReturnType<typeof rootReducer>;
 export const makeStore = (preloadedState?: Partial<RootState>) => {
   const store = configureStore({
     reducer: rootReducer,
+    devTools: true,
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware().concat(kitchenApi.middleware, visualizerApi.middleware),
     preloadedState,

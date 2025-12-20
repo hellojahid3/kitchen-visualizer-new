@@ -1,4 +1,4 @@
-import React from 'react';
+import { type ComponentProps, forwardRef } from 'react';
 import styled from 'styled-components';
 
 interface ControlButtonProps {
@@ -28,17 +28,16 @@ const ControlButtonStyled = styled.button<ControlButtonProps>`
   }
 `;
 
-const ControlButton = React.forwardRef<
-  HTMLButtonElement,
-  ControlButtonProps & React.ComponentProps<'button'>
->(({ isActive, ...props }, ref) => {
-  return (
-    <ControlButtonStyled
-      data-active={isActive}
-      ref={ref}
-      {...props}
-    />
-  );
-});
+const ControlButton = forwardRef<HTMLButtonElement, ControlButtonProps & ComponentProps<'button'>>(
+  ({ isActive, ...props }, ref) => {
+    return (
+      <ControlButtonStyled
+        data-active={isActive}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
 export default ControlButton;

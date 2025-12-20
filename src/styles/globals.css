@@ -1,5 +1,6 @@
 :root {
-  --font-sans: 'DM Sans', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+  --font-sans: 'Open Sans', sans-serif;
   --color-primary: #1696e7;
   --color-secondary: #2b96cc;
   --color-text: #313131;

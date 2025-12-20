@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
 import VisualizerError from '@/components/visualizer-error';
@@ -19,7 +19,7 @@ export default function VisualizerPage() {
     kitchenId: kitchenId!,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (data && data.gaMeasurementId) {
       initAnalytics(data.gaMeasurementId, { clientId: `${subdomain}-${kitchenId}` });
       trackAnalyticEvent('Visualizer', 'Loaded', data.name, parseInt(data.id));
@@ -35,5 +35,5 @@ export default function VisualizerPage() {
     return <VisualizerError onRetry={refetch} />;
   }
 
-  return <VisualizerCollapsibleLayout data={data} />;
+  return <VisualizerCollapsibleLayout />;
 }
