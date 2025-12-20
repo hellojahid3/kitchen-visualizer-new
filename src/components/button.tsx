@@ -14,6 +14,7 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: var(--button-gap);
+  width: var(--button-width, auto);
   padding: var(--button-padding);
   font-size: var(--button-font-size);
   font-weight: var(--button-font-weight);

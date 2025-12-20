@@ -6,7 +6,7 @@ import { setShowUiElements } from '@/features/visualizer/visualizerSlice';
 
 const UIToggleControlButton = styled.button`
   appearance: none;
-  position: fixed;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;

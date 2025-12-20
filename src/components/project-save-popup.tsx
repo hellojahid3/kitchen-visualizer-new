@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import type { CSSProperties } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import styled from 'styled-components';
@@ -8,6 +9,32 @@ import { useSaveProjectMutation } from '@/features/visualizer/visualizerApi';
 import { projectSchema } from '@/lib/validation';
 import { Button } from './button';
 import { Popup } from './popup';
+import { TextInput } from './text-input';
+
+const ProjectSaveForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
+
+const ProjectPreviewImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  background-color: #f0f0f0;
+  border-radius: 0.125rem;
+  margin-bottom: 1rem;
+`;
+
+const ProjectPreviewImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.125rem;
+`;
 
 const ErrorWrapper = styled.div`
   display: flex;
@@ -20,9 +47,11 @@ const ErrorWrapper = styled.div`
 `;
 
 const ErrorIcon = styled.div`
+  display: block;
   color: #f93d5c;
   font-size: 1.25rem;
-  line-height: 1.2em;
+  line-height: 1em;
+  margin-top: -0.25rem;
   margin-right: 0.25rem;
 `;
 
@@ -69,38 +98,75 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
       isOpen={open}
       onClose={onClose}
       title="Save Project"
-      description="Enter your details to save your project."
+      description="We'll send you an email containing all the selected components and a preview image of your kitchen."
       maxWidth="md"
     >
-      <form onSubmit={form.handleSubmit(handleSave)}>
-        {/* Form fields for name, email, phone, zip code */}
+      <ProjectPreviewImageWrapper>
+        <ProjectPreviewImage
+          src=""
+          alt="Kitchen Preview Image"
+        />
+      </ProjectPreviewImageWrapper>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti soluta obcaecati est
-          enim praesentium velit molestias voluptatibus exercitationem at distinctio, quam atque
-          odit incidunt sit esse sed culpa quisquam eum veritatis voluptate amet. Dicta, dolor
-          dolorum est nobis magni perspiciatis facilis quidem! Quaerat aperiam doloremque at,
-          corrupti id perferendis itaque distinctio assumenda, porro sit asperiores voluptate
-          molestias corporis eum? Voluptatibus, ratione blanditiis nulla iure ab optio libero et
-          dignissimos voluptate qui, similique voluptatum, neque quae animi quam ipsam quos. Alias
-          soluta laudantium error enim expedita assumenda deserunt voluptatem. Autem blanditiis
-          architecto eveniet modi magni numquam nulla ipsa laboriosam facilis voluptatem?
-        </p>
+      <ProjectSaveForm
+        id="project-save-form"
+        onSubmit={form.handleSubmit(handleSave)}
+      >
+        {error && (
+          <ErrorWrapper>
+            <ErrorIcon>⚠️</ErrorIcon>
+            <ErrorMessage>Failed to save project. Please try again later.</ErrorMessage>
+          </ErrorWrapper>
+        )}
+
+        <TextInput
+          type="text"
+          placeholder="Enter your full name"
+          label="Name"
+          autoComplete="name"
+          {...form.register('name')}
+          error={form.formState.errors.name?.message}
+        />
+
+        <TextInput
+          type="email"
+          placeholder="Enter your email address"
+          label="Email"
+          autoComplete="email"
+          {...form.register('email')}
+          error={form.formState.errors.email?.message}
+        />
+
+        <TextInput
+          type="tel"
+          placeholder="Enter your phone number"
+          label="Phone"
+          autoComplete="tel"
+          {...form.register('phone')}
+          error={form.formState.errors.phone?.message}
+        />
+
+        <TextInput
+          type="text"
+          placeholder="Enter your zip code"
+          label="Zip Code"
+          {...form.register('zipCode')}
+          error={form.formState.errors.zipCode?.message}
+        />
 
         <Button
           type="submit"
           disabled={isLoading}
+          style={
+            {
+              '--button-width': '100%',
+              '--button-padding': '1rem',
+            } as CSSProperties
+          }
         >
           {isLoading ? 'Saving...' : 'Save Project'}
         </Button>
-      </form>
-
-      {error && (
-        <ErrorWrapper>
-          <ErrorIcon>⚠️</ErrorIcon>
-          <ErrorMessage>Failed to save project. Please try again.</ErrorMessage>
-        </ErrorWrapper>
-      )}
+      </ProjectSaveForm>
     </Popup>
   );
 }

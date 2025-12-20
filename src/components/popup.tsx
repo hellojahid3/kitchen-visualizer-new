@@ -31,7 +31,7 @@ const CenteredPanel = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100%;
-  padding: 2rem;
+  padding: 1rem;
 `;
 
 const Panel = styled(DialogPanel)<{ $maxWidth: string }>`

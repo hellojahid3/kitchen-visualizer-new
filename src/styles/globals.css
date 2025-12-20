@@ -19,12 +19,12 @@
   --color-light-gray: #d3d3d3;
   --color-dark-gray: #a9a9a9;
 
-  --color-input-border: #313131;
+  --color-input-border: #e5e5e5;
   --color-input-border-focus: #1696e7;
   --color-input-bg: #fff;
   --color-input-color: #313131;
-
   --color-input-label-color: #313131;
+  --input-border-radius: 0.125rem;
 
   --button-bg: #4f46e5;
   --button-color: #fff;
