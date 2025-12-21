@@ -7,83 +7,55 @@ const InputContainer = styled.div`
   display: inline-flex;
   flex-direction: column;
   position: relative;
-  min-width: 0px;
-  padding: 0px;
-  margin: 0px;
-  border: 0px;
-  vertical-align: top;
+  gap: 0.25rem;
+  padding: 0;
+  margin: 0;
 `;
 
 const InputLabel = styled.label`
-  color: var(--color-input-label-color);
-  font-size: 1rem;
-  line-height: 1.4375em;
-  letter-spacing: 0.00938em;
-  display: block;
-  text-overflow: ellipsis;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  transform-origin: left top;
-  z-index: 1;
   user-select: none;
-  pointer-events: auto;
-  transform: translate(13px, 10px) scale(0.75);
+  display: block;
+  color: rgb(var(--kv-input-label-color-rgb));
+  font-size: var(--kv-input-label-font-size);
+  line-height: var(--kv-input-label-line-height);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   padding: 0px;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
 const InputControl = styled.input`
-  font: inherit;
-  letter-spacing: inherit;
-  color: var(--color-input-color);
-  border: 0px;
-  box-sizing: content-box;
-  background: none;
-  height: 1.375em;
-  margin: 0px;
   display: block;
-  min-width: 0px;
+  font-family: var(--kv-font-sans);
+  color: rgb(var(--kv-input-color-rgb));
+  background: rgb(var(--kv-input-bg-rgb));
   width: 100%;
-  animation-name: mui-auto-fill-cancel;
-  animation-duration: 10ms;
-  padding: 26px 12px 10px;
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
+  font-size: var(--kv-input-font-size);
+  line-height: var(--kv-input-line-height);
+  margin: 0;
+  padding: var(--kv-input-padding);
+  letter-spacing: inherit;
+  border: var(--kv-input-border-width) var(--kv-input-border-style) rgb(var(--kv-input-border-rgb));
+  border-radius: var(--kv-input-border-radius);
+  box-sizing: border-box;
   transition: border-color 0.2s ease;
-  border-radius: var(--input-border-radius, 4px);
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--color-input-border);
+  outline: none;
 
   &:focus {
-    border-color: var(--color-input-border-focus);
+    background-color: rgb(var(--kv-input-focus-bg-rgb) / var(--kv-input-focus-bg-opacity));
+    border-color: rgb(var(--kv-input-focus-border-color));
+    box-shadow: var(--kv-input-focus-box-shadow);
   }
 
   &::placeholder {
-    font-size: 0.9rem;
+    color: rgb(var(--kv-input-placeholder-color-rgb));
   }
 `;
 
-const InputControlWrapper = styled.div`
-  font-size: 1rem;
-  line-height: 1.4375em;
-  letter-spacing: 0.00938em;
-  color: var(--color-input-label-color);
-  box-sizing: border-box;
-  cursor: text;
-  display: inline-flex;
-  -webkit-box-align: center;
-  align-items: center;
-  position: relative;
-  border-radius: var(--input-border-radius, 4px);
-  overflow: hidden;
-  background-color: var(--color-input-bg);
-`;
-
 const InputErrorMessage = styled.p`
-  color: var(--color-danger);
+  color: rgb(var(--kv-input-error-rgb));
   font-size: 0.75rem;
   margin-bottom: 0;
 `;
@@ -101,15 +73,13 @@ function TextInput({
   return (
     <InputContainer>
       <InputLabel htmlFor={id || generatedId}>{label}</InputLabel>
-      <InputControlWrapper>
-        <InputControl
-          type={type}
-          data-slot="input"
-          id={id || generatedId}
-          className={cn(className)}
-          {...props}
-        />
-      </InputControlWrapper>
+      <InputControl
+        type={type}
+        data-slot="input"
+        id={id || generatedId}
+        className={cn(className)}
+        {...props}
+      />
       {error && <InputErrorMessage>{error}</InputErrorMessage>}
     </InputContainer>
   );

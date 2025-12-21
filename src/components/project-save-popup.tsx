@@ -24,8 +24,8 @@ const ProjectPreviewImageWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 200px;
-  background-color: #f0f0f0;
-  border-radius: 0.125rem;
+  background-color: #f7f7f7;
+  border-radius: 0.875rem;
   margin-bottom: 1rem;
 `;
 
@@ -33,7 +33,7 @@ const ProjectPreviewImage = styled.img`
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 0.125rem;
+  border-radius: 0.875rem;
 `;
 
 const ErrorWrapper = styled.div`
@@ -122,7 +122,7 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
         <TextInput
           type="text"
           placeholder="Enter your full name"
-          label="Name"
+          label="Full Name"
           autoComplete="name"
           {...form.register('name')}
           error={form.formState.errors.name?.message}
@@ -131,7 +131,7 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
         <TextInput
           type="email"
           placeholder="Enter your email address"
-          label="Email"
+          label="Email Address"
           autoComplete="email"
           {...form.register('email')}
           error={form.formState.errors.email?.message}
@@ -140,7 +140,7 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
         <TextInput
           type="tel"
           placeholder="Enter your phone number"
-          label="Phone"
+          label="Phone Number"
           autoComplete="tel"
           {...form.register('phone')}
           error={form.formState.errors.phone?.message}
@@ -159,8 +159,8 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
           disabled={isLoading}
           style={
             {
-              '--button-width': '100%',
-              '--button-padding': '1rem',
+              '--kv-button-width': '100%',
+              '--kv-button-padding': '0.875rem',
             } as CSSProperties
           }
         >

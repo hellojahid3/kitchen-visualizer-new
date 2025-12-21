@@ -7,15 +7,20 @@ import { IconX } from './icons/icon-x';
 
 const StyledDialog = styled(Dialog)`
   position: relative;
-  z-index: 9999999;
+  z-index: var(--kv-modal-z-index);
 `;
 
 const Overlay = styled(motion.div)`
-  position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(6px) saturate(180%);
-  -webkit-backdrop-filter: blur(6px) saturate(180%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(var(--kv-modal-backdrop-rgb), var(--kv-modal-backdrop-opacity));
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 `;
 
 const Container = styled.div`
@@ -47,24 +52,15 @@ const Panel = styled(DialogPanel)<{ $maxWidth: string }>`
 
     return widths[props.$maxWidth as keyof typeof widths];
   }};
-  transform: scale(1);
   overflow: hidden;
-  border-radius: 1rem;
-  background-color: rgba(255, 255, 255, 1);
-  padding: 1.5rem;
+  border-radius: var(--kv-modal-border-radius);
+  background-color: rgb(var(--kv-modal-bg-rgb));
+  padding: var(--kv-modal-padding);
   text-align: left;
   align-items: center;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-
-  &[data-closed] {
-    transform: scale(0.95);
-    opacity: 0;
-  }
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(var(--kv-modal-blur));
+  -webkit-backdrop-filter: blur(var(--kv-modal-blur));
 `;
 
 const HeaderWrapper = styled.div`
@@ -77,28 +73,29 @@ const HeaderWrapper = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const Title = styled(DialogTitle)`
-  font-family: var(--font-heading), serif;
+  font-family: var(--kv-font-serif), serif;
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.2em;
-  color: #111827;
+  color: rgb(var(--kv-modal-title-color));
 `;
 
 const Subtitle = styled(Description)`
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   line-height: 1.25;
-  color: #6b7280;
+  color: rgb(var(--kv-modal-subtitle-color));
   margin-bottom: 0;
 `;
 
 const CloseButton = styled.button`
   appearance: none;
   border-radius: 0.375rem;
-  background-color: white;
+  background-color: transparent;
   color: #9ca3af;
   border: none;
   cursor: pointer;
@@ -109,10 +106,10 @@ const CloseButton = styled.button`
 `;
 
 const Content = styled.div`
-  font-size: 0.925rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #374151;
+  font-size: var(--body-font-size);
+  font-weight: var(--body-font-weight);
+  line-height: var(--body-line-height);
+  color: var(--color-text);
 `;
 
 interface PopupProps {
@@ -150,10 +147,10 @@ export const Popup = ({
             <CenteredPanel>
               <Panel
                 as={motion.div}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
+                initial={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                exit={{ opacity: 0, translateY: 20 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
                 $maxWidth={maxWidth}
               >
                 <HeaderWrapper>

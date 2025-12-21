@@ -1,62 +1,70 @@
 :root {
-  --font-heading: 'Playfair Display', serif;
-  --font-sans: 'Open Sans', sans-serif;
-  --color-primary: #1696e7;
-  --color-secondary: #2b96cc;
-  --color-text: #313131;
-  --color-background: #fff;
-  --color-accent: #2b96cc;
-  --color-accent-foreground: #1696e7;
-  --color-border: #e0e0e0;
-  --color-success: #28a745;
-  --color-danger: #dc3545;
-  --color-warning: #ffc107;
-  --color-info: #17a2b8;
-  --color-muted: #6c757d;
-  --color-white: #fff;
-  --color-black: #000;
-  --color-gray: #808080;
-  --color-light-gray: #d3d3d3;
-  --color-dark-gray: #a9a9a9;
+  --kv-font-serif: 'Playfair Display', serif;
+  --kv-font-sans: 'Open Sans', sans-serif;
+  --kv-color-background: 250, 249, 246;
+  --kv-color-primary: 197, 160, 89;
+  --kv-color-secondary: 140, 140, 140;
+  --kv-color-text: 26, 26, 26;
+  --kv-color-accent: 197, 160, 89;
+  --kv-color-accent-foreground: 255, 255, 255;
+  --kv-color-accent-hover: 176, 141, 74;
+  --kv-color-accent-hover-foreground: 255, 255, 255;
+  --kv-color-border: 247, 247, 247;
 
-  --color-input-border: #e5e5e5;
-  --color-input-border-focus: #1696e7;
-  --color-input-bg: #fff;
-  --color-input-color: #313131;
-  --color-input-label-color: #313131;
-  --input-border-radius: 0.125rem;
+  --kv-body-font: var(--kv-font-sans);
+  --kv-body-font-size: 1rem;
+  --kv-body-font-weight: 400;
+  --kv-body-line-height: 1.5;
+  --kv-body-background: var(--kv-color-background);
+  --kv-body-foreground: var(--kv-color-text);
 
-  --button-bg: #4f46e5;
-  --button-color: #fff;
-  --button-hover-bg: #505050;
-  --button-hover-color: #fff;
-  --button-border-radius: 0.125rem;
-  --button-font-weight: 500;
-  --button-font-size: 0.875rem;
-  --button-line-height: calc(1.25 / var(--button-font-size));
-  --button-padding: 0.5rem 1.25rem;
-  --button-gap: 0.5rem;
-  --button-icon-size: 0.875rem;
-  --button-spinner-size: 0.875rem;
-  --button-spinner-border: 2px;
-  --button-spinner-color: #fff;
-  --button-spinner-accent-color: #718096;
+  --kv-input-font-size: 0.875rem;
+  --kv-input-line-height: calc(1.25 / var(--kv-input-font-size));
+  --kv-input-bg-rgb: 250, 250, 249;
+  --kv-input-color-rgb: 49, 49, 49;
+  --kv-input-error-rgb: 220, 38, 38;
+  --kv-input-label-font-size: 0.65rem;
+  --kv-input-label-line-height: 1.4em;
+  --kv-input-label-color-rgb: 176, 141, 74;
+  --kv-input-placeholder-color-rgb: 156, 163, 175;
+  --kv-input-padding: 0.8rem 1.125rem;
+  --kv-input-border-width: 1px;
+  --kv-input-border-style: solid;
+  --kv-input-border-rgb: 238, 238, 238;
+  --kv-input-border-radius: 0.875rem;
+  --kv-input-focus-bg-rgb: 255, 255, 255;
+  --kv-input-focus-bg-opacity: 1;
+  --kv-input-focus-border-color: var(--kv-color-accent);
+  --kv-input-focus-box-shadow: 0 4px 12px rgba(var(--kv-color-accent), 0.05);
 
-  --acrdn-font-family: var(--font-sans, sans-serif);
-  --acrdn-font-size: 16px;
-  --acrdn-header-padding: 0.5rem 1rem;
-  --acrdn-header-min-height: 35px;
-  --acrdn-header-font-size: 16px;
-  --acrdn-header-font-weight: 400;
-  --acrdn-header-color: #000;
-  --acrdn-header-background: #fff;
-  --acrdn-header-hover-color: #000;
-  --acrdn-header-hover-background: #f5f5f5;
-  --acrdn-content-font-size: 16px;
-  --acrdn-content-background: #fff;
-  --acrdn-border-color: #dee2e6;
-  --acrdn-content-padding: 20px;
-  --acrdn-border-radius: 6px;
+  --kv-modal-bg-rgb: 255, 255, 255;
+  --kv-modal-backdrop-rgb: 250, 249, 246;
+  --kv-modal-backdrop-opacity: 0.8;
+  --kv-modal-title-color: 17, 24, 39;
+  --kv-modal-subtitle-color: 107, 114, 128;
+  --kv-modal-padding: 2.5rem;
+  --kv-modal-border-radius: 0.875rem;
+  --kv-modal-blur: 10px;
+  --kv-modal-z-index: 9999999;
+
+  --kv-button-width: auto;
+  --kv-button-font-size: 0.875rem;
+  --kv-button-font-weight: 500;
+  --kv-button-bg-rgb: var(--kv-color-accent);
+  --kv-button-color-rgb: var(--kv-color-accent-foreground);
+  --kv-button-line-height: calc(1.25 / var(--kv-button-font-size));
+  --kv-button-padding: 0.5rem 1.25rem;
+  --kv-button-border-width: 1px;
+  --kv-button-border-style: solid;
+  --kv-button-border-color: rgb(var(--kv-button-bg-rgb));
+  --kv-button-border-radius: 999px;
+  --kv-button-icon-size: 0.875rem;
+  --kv-button-hover-bg-rgb: var(--kv-color-accent-hover-foreground);
+  --kv-button-hover-color-rgb: var(--kv-color-accent-hover);
+  --kv-button-spinner-size: 0.875rem;
+  --kv-button-spinner-color-rgb: 255, 255, 255;
+  --kv-button-spinner-accent-color-rgb: var(--kv-color-accent);
+  --kv-button-spinner-border: 2px;
 }
 
 * {
@@ -80,14 +88,14 @@ html {
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 400;
+  background-color: rgb(var(--kv-body-background));
+  color: rgb(var(--kv-body-foreground));
+  font-family: var(--kv-body-font);
+  font-size: var(--kv-body-font-size);
+  font-weight: var(--kv-body-font-weight);
   margin: 0;
   padding: 0;
-  line-height: 1.5;
+  line-height: var(--kv-body-line-height);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -98,7 +106,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--color-text);
+  color: var(--kv-color-text);
   font-weight: 400;
   margin-top: 0;
   margin-bottom: 0;
@@ -222,8 +230,8 @@ p {
 
 a,
 button {
-  border-color: var(--color-border);
-  color: var(--button-color);
+  border-color: var(--kv-color-border);
+  color: var(--kv-button-color);
   outline: medium none;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
@@ -234,7 +242,7 @@ button {
 
 a:focus,
 a:hover {
-  color: var(--button-color);
+  color: var(--kv-button-color);
   text-decoration: none;
 }
 

@@ -11,20 +11,17 @@ const ControlButtonStyled = styled.button<ControlButtonProps>`
   justify-content: center;
   appearance: none;
   padding: 0.5rem;
-  color: #374151;
+  color: rgb(var(--kv-color-accent-hover));
   background-color: #ffffff;
   border-radius: 9999px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(var(--kv-color-accent));
   transition: background-color 0.2s ease-in-out;
-  border: none;
   cursor: pointer;
 
-  &:hover {
-    background-color: #f3f4f6;
-  }
-
+  &:hover,
   &[data-active='true'] {
-    background-color: #bfdbfe;
+    color: #ffffff;
+    background-color: rgb(var(--kv-color-accent));
   }
 `;
 
