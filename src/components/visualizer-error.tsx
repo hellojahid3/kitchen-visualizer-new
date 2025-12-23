@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: rgb(var(--kv-body-background));
   height: 100%;
   padding: 1rem;
   z-index: 999;

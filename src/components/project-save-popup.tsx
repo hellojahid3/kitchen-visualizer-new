@@ -24,7 +24,7 @@ const ProjectPreviewImageWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 200px;
-  background-color: #f7f7f7;
+  background-color: rgb(var(--kv-project-preview-bg));
   border-radius: 0.875rem;
   margin-bottom: 1rem;
 `;
@@ -41,7 +41,7 @@ const ErrorWrapper = styled.div`
   align-items: center;
   gap: 0.4rem;
   color: #000000;
-  background-color: #f3f3f3;
+  background-color: rgb(var(--kv-project-preview-bg));
   padding: 1rem;
   border-radius: 0.125rem;
 `;

@@ -14,7 +14,7 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const LayoutSidebarWrapper = styled.aside`
-  background-color: #fff;
+  background-color: rgb(var(--kv-sidebar-background));
   width: 25%;
   height: 100%;
   min-width: 400px;
@@ -40,7 +40,6 @@ export const LayoutSidebarHeaderContent = styled.header`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ffffff;
   padding-bottom: 1rem;
   padding-top: 1.75rem;
   padding-left: 1.75rem;
@@ -49,7 +48,6 @@ export const LayoutSidebarHeaderContent = styled.header`
 `;
 
 export const LayoutContentWrapper = styled.main`
-  background-color: #f3f4f6;
   width: 75%;
   height: 100%;
   flex: 1 1 0;
@@ -79,7 +77,6 @@ export const LayoutContentInner = styled.div`
   height: 100%;
   max-width: 100%;
   max-height: 100%;
-  background-color: #e5e7eb;
 `;
 
 export const LayoutContentInnerWrapper = styled.div`
@@ -87,14 +84,13 @@ export const LayoutContentInnerWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: #f3f4f6;
 `;
 
 export const CanvasWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #f0f0f0;
+  background-color: rgb(var(--kv-canvas-background));
   overflow: hidden;
 `;
 

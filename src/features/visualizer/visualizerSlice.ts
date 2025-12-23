@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { KitchenComponents, Selection, Toolbar } from '@/types';
+import type { Hostpot, KitchenComponents, Selection, Toolbar } from '@/types';
 import { kitchenApi } from '../kitchen/kitchenApi';
 
 export interface VisualizerState {
@@ -10,8 +10,11 @@ export interface VisualizerState {
   openProjectSave: boolean;
   openSelectedComponents: boolean;
   components: KitchenComponents;
+  hostpots: Hostpot[];
   selections: Selection;
+  selectedSplashbackVariant: string;
   toolbars: Toolbar[];
+  openedAccordionId: string | null;
 }
 
 const initialState: VisualizerState = {
@@ -31,15 +34,14 @@ const initialState: VisualizerState = {
     floors: [],
     crownMoldings: [],
     appliances: [],
-    hostpots: [],
   },
+  hostpots: [],
   selections: {
     stone: null,
     style: null,
     colour: null,
     worktop: null,
     splashback: null,
-    splashbackVariant: 'None',
     baseCabinet: null,
     islandCabinet: null,
     wallCabinet: null,
@@ -47,7 +49,9 @@ const initialState: VisualizerState = {
     crownMolding: null,
     appliance: null,
   },
+  selectedSplashbackVariant: 'None',
   toolbars: [],
+  openedAccordionId: null,
 };
 
 export const visualizerSlice = createSlice({
@@ -81,6 +85,9 @@ export const visualizerSlice = createSlice({
     setOpenSelectedComponents: (state, action: PayloadAction<boolean>) => {
       state.openSelectedComponents = action.payload;
     },
+    toggleAccordion: (state, action: PayloadAction<string | null>) => {
+      state.openedAccordionId = state.openedAccordionId === action.payload ? null : action.payload;
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(kitchenApi.endpoints.getKitchen.matchFulfilled, (state, action) => {
@@ -96,6 +103,7 @@ export const visualizerSlice = createSlice({
 export const {
   setComponents,
   setToolbars,
+  toggleAccordion,
   setSelections,
   setIsPanMode,
   setShowUiElements,

@@ -10,7 +10,7 @@ const ProjectPreviewImageWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 200px;
-  background-color: #f7f7f7;
+  background-color: rgb(var(--kv-project-preview-bg));
   border-radius: 0.875rem;
   margin-bottom: 1rem;
 `;
@@ -31,11 +31,11 @@ const ComponentItemList = styled.div`
 
 const ComponentItem = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   padding: 12px;
   border-radius: 0.875rem;
-  background: #fafaf9;
+  background: rgb(var(--kv-project-preview-bg));
 `;
 
 const ComponentImg = styled.div`

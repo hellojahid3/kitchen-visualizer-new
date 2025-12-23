@@ -12,6 +12,7 @@ export type Position = {
 
 export type Toolbar = {
   id: string;
+  uid: string;
   name: string;
   pluralName: string | null;
   thumbnailUrl: string | null;
@@ -57,7 +58,6 @@ export type KitchenComponents = {
   floors: Component[];
   crownMoldings: Component[];
   appliances: Component[];
-  hostpots: Hostpot[];
 };
 
 export type KitchenInfo = {
@@ -84,7 +84,6 @@ export type Selection = {
   colour: Component | null;
   worktop: Component | null;
   splashback: Splashback | null;
-  splashbackVariant: string;
   baseCabinet: Component | null;
   islandCabinet: Component | null;
   wallCabinet: Component | null;
