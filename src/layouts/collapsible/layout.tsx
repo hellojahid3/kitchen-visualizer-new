@@ -22,7 +22,7 @@ import {
   LayoutContentWrapper,
   LayoutSidebar,
   LayoutWrapper,
-} from './styles';
+} from './layout.styled';
 
 export default function VisualizerCollapsibleLayout() {
   const visualizer = useSelector((state: RootState) => state.visualizer);

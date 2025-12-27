@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
 import { visualLayerIndex } from '@/lib/constants';
 import type { Position } from '@/types';
-import { CanvasLayersWrapper } from '../styles';
 import CanvasLayerMaskImage from './CanvasLayerMaskImage';
+import { CanvasLayersWrapper } from './CanvasLayers.styled';
 
 type CanvasLayersProps = {
   canvasLayersRef: React.RefObject<HTMLDivElement | null>;

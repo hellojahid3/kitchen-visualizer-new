@@ -30,17 +30,6 @@ export const LayoutSidebar = styled.aside`
   }
 `;
 
-export const LayoutSidebarHeaderContent = styled.header`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-bottom: 1rem;
-  padding-top: 1.75rem;
-  padding-left: 1.75rem;
-  padding-right: 1.75rem;
-  z-index: 998;
-`;
-
 export const LayoutContentWrapper = styled.main`
   width: 75%;
   height: 100%;
@@ -103,9 +92,4 @@ export const Canvas = styled.div`
   transition: transform 0.2s ease-in-out;
   will-change: transform, translate;
   touch-action: none;
-`;
-
-export const CanvasLayersWrapper = styled.div`
-  width: 100%;
-  height: 100%;
 `;

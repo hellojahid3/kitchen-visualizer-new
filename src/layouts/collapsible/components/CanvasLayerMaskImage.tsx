@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 
 import type { RootState } from '@/app/store';
 import { cn } from '@/lib/utils';
 import { VIEWPORT_CONFIG } from '../config';
+import { CanvasLayerMaskImageBox, LayerMaskImage } from './CanvasLayerMaskImage.styled';
 
 type CanvasLayerMaskImageProps = {
   canvasLayersRef: React.RefObject<HTMLDivElement | null>;
@@ -15,36 +15,6 @@ type CanvasLayerMaskImageProps = {
   positionY?: number;
   layerType?: string;
 };
-
-const LayerMaskImageWrapper = styled.div`
-  --layer-img-scale: 1;
-  --layer-img-opacity: 1;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: scale(var(--layer-img-scale, 1))
-    translate(var(--layer-img-translate-x, 0), var(--layer-img-translate-y, 0));
-  transition: opacity 0.2s ease-in;
-  touch-action: none;
-  pointer-events: none;
-  opacity: var(--layer-img-opacity, 1);
-  z-index: var(--layer-img-zindex, 10);
-`;
-
-const LayerMaskImage = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--layer-img-width, 100%);
-  height: var(--layer-img-height, auto);
-  object-fit: contain;
-  user-select: none;
-  pointer-events: auto;
-  transform: translate(-50%, -50%);
-`;
 
 export default function CanvasLayerMaskImage({
   canvasLayersRef,
@@ -107,7 +77,7 @@ export default function CanvasLayerMaskImage({
   }
 
   return (
-    <LayerMaskImageWrapper
+    <CanvasLayerMaskImageBox
       data-layer-type={layerType}
       style={
         {
@@ -125,6 +95,6 @@ export default function CanvasLayerMaskImage({
         crossOrigin="anonymous"
         alt=""
       />
-    </LayerMaskImageWrapper>
+    </CanvasLayerMaskImageBox>
   );
 }
