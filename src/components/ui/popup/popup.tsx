@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { IconX } from './icons/icon-x';
+import { IconX } from '../../icons/icon-x';
 import {
   CenteredPanel,
   Dialog,
@@ -16,14 +16,14 @@ import {
   DialogTitle,
 } from './popup.styled';
 
-interface PopupProps {
+export type PopupProps = {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   description?: string;
   children: ReactNode;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-}
+};
 
 export const Popup = ({
   isOpen,

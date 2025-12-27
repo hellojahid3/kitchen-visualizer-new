@@ -1,4 +1,4 @@
-import { Button } from './button';
+import { Button } from '@/components/ui/button';
 import {
   ErrorButtonGroup,
   ErrorCentered,
@@ -8,17 +8,17 @@ import {
   ErrorWrapper,
 } from './visualizer-error.styled';
 
-interface VisualizerErrorProps {
+export type VisualizerErrorProps = {
   onRetry?: () => void;
   title?: string;
   message?: string;
-}
+};
 
-export default function VisualizerError({
+export const VisualizerError = ({
   onRetry,
   title = 'Error',
   message = "We can't load the visualizer right now, there is something wrong. Please try again later.",
-}: VisualizerErrorProps) {
+}: VisualizerErrorProps) => {
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -47,4 +47,4 @@ export default function VisualizerError({
       </ErrorInner>
     </ErrorWrapper>
   );
-}
+};

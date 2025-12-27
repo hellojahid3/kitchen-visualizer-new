@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
 import { LeftIcon, RightIcon, Spinner, StyledButton } from './button.styled';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   'aria-label'?: string;
   loading?: boolean;
   disabled?: boolean;

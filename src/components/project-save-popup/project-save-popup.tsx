@@ -4,28 +4,26 @@ import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import type z from 'zod';
 
+import { Button } from '@/components/ui/button';
+import { Popup } from '@/components/ui/popup';
+import { TextInput } from '@/components/ui/text-input';
 import { useSaveProjectMutation } from '@/features/visualizer/visualizerApi';
 import { projectSchema } from '@/lib/validation';
-import { Button } from './button';
-import { Popup } from './popup';
 import {
+  ProjectPreviewImage,
+  ProjectPreviewImageBox,
   ProjectSaveErrorIcon,
   ProjectSaveErrorMessage,
   ProjectSaveErrorWrapper,
   ProjectSaveForm,
 } from './project-save-popup.styled';
-import { TextInput } from './text-input';
-import {
-  ProjectPreviewImage,
-  ProjectPreviewImageWrapper,
-} from './visualizer-selected-components.styled';
 
-type ProjectSavePopupProps = {
+export type ProjectSavePopupProps = {
   open: boolean;
   onClose: () => void;
 };
 
-export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProps) {
+export const ProjectSavePopup = ({ open, onClose }: ProjectSavePopupProps) => {
   const { subdomain, kitchenId } = useParams<{ subdomain: string; kitchenId: string }>();
   const [saveProject, { isLoading, error }] = useSaveProjectMutation();
 
@@ -60,12 +58,12 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
       description="We'll send you an email containing all the selected components and a preview image of your kitchen."
       maxWidth="md"
     >
-      <ProjectPreviewImageWrapper>
+      <ProjectPreviewImageBox>
         <ProjectPreviewImage
           src=""
           alt="Kitchen Preview Image"
         />
-      </ProjectPreviewImageWrapper>
+      </ProjectPreviewImageBox>
 
       <ProjectSaveForm
         id="project-save-form"
@@ -130,4 +128,4 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
       </ProjectSaveForm>
     </Popup>
   );
-}
+};

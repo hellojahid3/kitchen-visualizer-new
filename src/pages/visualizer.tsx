@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
-import VisualizerError from '@/components/visualizer-error';
-import VisualizerLoading from '@/components/visualizer-loading';
+import { VisualizerError } from '@/components/visualizer-error';
+import { VisualizerLoading } from '@/components/visualizer-loading';
 import { useGetKitchenQuery } from '@/features/kitchen/kitchenApi';
 import VisualizerCollapsibleLayout from '@/layouts/collapsible/layout';
 import { initAnalytics, trackAnalyticEvent, trackAnalyticPageView } from '@/lib/analytics';

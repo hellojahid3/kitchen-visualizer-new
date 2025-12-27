@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { Button } from '@/components/button';
 import { IconDownload } from '@/components/icons/icon-download';
 import { IconEdit } from '@/components/icons/icon-edit';
-import ProjectSavePopup from '@/components/project-save-popup';
-import VisualizerSelectedComponents from '@/components/visualizer-selected-components';
+import { ProjectSavePopup } from '@/components/project-save-popup';
+import { Button } from '@/components/ui/button';
+import { VisualizerSelectedComponents } from '@/components/visualizer-selected-components';
 import { LayoutSidebarHeaderContent } from './LayoutSidebarHeader.styled';
 
 export default function LayoutSidebarHeader() {

@@ -5,7 +5,7 @@ import {
   NotFoundSubtitle,
 } from './not-found.styled';
 
-export default function NotFound() {
+export const NotFound = () => {
   return (
     <NotFoundContainer>
       <NotFoundImage
@@ -18,4 +18,4 @@ export default function NotFound() {
       </NotFoundDescription>
     </NotFoundContainer>
   );
-}
+};

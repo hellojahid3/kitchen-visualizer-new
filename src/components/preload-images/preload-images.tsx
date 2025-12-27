@@ -1,10 +1,10 @@
 import { PreloadImagesWrapper } from './preload-images.styled';
 
-type PreloadImagesProps = {
+export type PreloadImagesProps = {
   urls: string[];
 };
 
-export default function PreloadImages({ urls }: PreloadImagesProps) {
+export const PreloadImages = ({ urls }: PreloadImagesProps) => {
   return (
     <PreloadImagesWrapper
       aria-hidden="true"
@@ -25,4 +25,4 @@ export default function PreloadImages({ urls }: PreloadImagesProps) {
       ))}
     </PreloadImagesWrapper>
   );
-}
+};

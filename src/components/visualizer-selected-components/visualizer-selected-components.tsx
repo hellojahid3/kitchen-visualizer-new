@@ -2,8 +2,8 @@ import type { CSSProperties } from 'react';
 import { useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
-import { Button } from './button';
-import { Popup } from './popup';
+import { Button } from '@/components/ui/button';
+import { Popup } from '@/components/ui/popup';
 import {
   ComponentImg,
   ComponentInfo,
@@ -16,15 +16,15 @@ import {
   ProjectPreviewImageWrapper,
 } from './visualizer-selected-components.styled';
 
-type VisualizerSelectedComponentsProps = {
+export type VisualizerSelectedComponentsProps = {
   open: boolean;
   onClose: () => void;
 };
 
-export default function VisualizerSelectedComponents({
+export const VisualizerSelectedComponents = ({
   open,
   onClose,
-}: VisualizerSelectedComponentsProps) {
+}: VisualizerSelectedComponentsProps) => {
   const selections = useSelector((state: RootState) => state.visualizer.selections);
 
   return (
@@ -75,4 +75,4 @@ export default function VisualizerSelectedComponents({
       </Button>
     </Popup>
   );
-}
+};

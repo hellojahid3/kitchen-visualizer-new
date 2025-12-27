@@ -8,14 +8,12 @@ import {
   TextInputLabel,
 } from './text-input.styled';
 
-function TextInput({
-  id,
-  className,
-  type,
-  label,
-  error,
-  ...props
-}: React.ComponentProps<'input'> & { label: string; error?: string }) {
+export type TextInputProps = React.ComponentProps<'input'> & {
+  label: string;
+  error?: string;
+};
+
+function TextInput({ id, className, type, label, error, ...props }: TextInputProps) {
   const generatedId = useId();
 
   return (

@@ -9,15 +9,15 @@ import {
   VisualizerType,
 } from './visualizer-loading.styled';
 
-type VisualizerLoadingProps = {
+export type VisualizerLoadingProps = {
   visualizerType?: '2D' | '3D';
   visualizerName?: string;
 };
 
-export default function VisualizerLoading({
+export const VisualizerLoading = ({
   visualizerType = '2D',
   visualizerName = 'Visualizer',
-}: VisualizerLoadingProps) {
+}: VisualizerLoadingProps) => {
   return (
     <Container>
       <InnerContainer>
@@ -88,4 +88,4 @@ export default function VisualizerLoading({
       </InnerContainer>
     </Container>
   );
-}
+};
