@@ -1,17 +1,20 @@
 /**
- * Visual Layer Index Constants
+ * Layer Orders
  */
-export const visualLayerIndex = {
-  backgroundImage: 0,
-  worktop: 18,
-  splashback: 19,
-  baseCabinet: 23,
-  islandCabinet: 24,
-  wallCabinet: 22,
-  floor: 17,
-  crownMolding: 21,
-  appliance: 20,
-};
+export const layerOrders = [
+  'floor',
+  'worktop',
+  'wallCabinet',
+  'crownMolding',
+  'appliance',
+  'splashback',
+  'baseCabinet',
+  'islandCabinet',
+];
+
+export const visualLayerIndex = Object.fromEntries(
+  layerOrders.map((layer, index) => [layer, index])
+);
 
 /**
  * Splashback Types
