@@ -7,4 +7,5 @@ export const VIEWPORT_CONFIG = {
   zoomStep: 0.1,
   extensionLimit: 10,
   fullscreenExtension: 100,
+  aspectRatio: 16 / 9,
 };

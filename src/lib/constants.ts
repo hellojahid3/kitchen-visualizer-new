@@ -2,14 +2,13 @@
  * Layer Orders
  */
 export const layerOrders = [
-  'floor',
-  'worktop',
-  'wallCabinet',
-  'crownMolding',
-  'appliance',
-  'splashback',
-  'baseCabinet',
-  'islandCabinet',
+  'floors',
+  'worktops',
+  'wallCabinets',
+  'crownMoldings',
+  'appliances',
+  'baseCabinets',
+  'islandCabinets',
 ];
 
 export const visualLayerIndex = Object.fromEntries(

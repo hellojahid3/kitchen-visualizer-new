@@ -79,15 +79,15 @@ export type Kitchen = KitchenInfo & {
 };
 
 export type Selection = {
-  stone: Component | null;
-  style: Component | null;
-  colour: Component | null;
-  worktop: Component | null;
-  splashback: Splashback | null;
-  baseCabinet: Component | null;
-  islandCabinet: Component | null;
-  wallCabinet: Component | null;
-  floor: Component | null;
-  crownMolding: Component | null;
-  appliance: Component | null;
+  stones: Component | null;
+  styles: Component | null;
+  colours: Component | null;
+  worktops: Component | null;
+  splashbacks: Splashback | null;
+  baseCabinets: Component | null;
+  islandCabinets: Component | null;
+  wallCabinets: Component | null;
+  floors: Component | null;
+  crownMoldings: Component | null;
+  appliances: Component | null;
 };

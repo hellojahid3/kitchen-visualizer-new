@@ -1,99 +1,94 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useLayoutEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
-import { cn } from '@/lib/utils';
 import { VIEWPORT_CONFIG } from '../config';
 import { CanvasLayerMaskImageBox, LayerMaskImage } from './CanvasLayerMaskImage.styled';
 
 type CanvasLayerMaskImageProps = {
   canvasLayersRef: React.RefObject<HTMLDivElement | null>;
-  imageSrc: string;
-  imageZIndex: number;
-  imageClassName?: string;
-  positionX?: number;
-  positionY?: number;
-  layerType?: string;
+  type?: string;
+  src: string;
+  zindex: number;
+  className?: string;
+  x?: number;
+  y?: number;
 };
 
 export default function CanvasLayerMaskImage({
+  type = 'default',
+  src,
+  zindex,
+  className,
+  x = 0,
+  y = 0,
   canvasLayersRef,
-  imageSrc,
-  imageZIndex,
-  imageClassName,
-  layerType = 'default',
-  positionX = 0,
-  positionY = 0,
 }: CanvasLayerMaskImageProps) {
   const showUiElements = useSelector((state: RootState) => state.visualizer.showUiElements);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  const handleWindowResize = useCallback(() => {
-    if (imageRef.current && canvasLayersRef.current) {
-      if (showUiElements) {
-        const containerWidth = canvasLayersRef.current.clientWidth;
-        const containerHeight = canvasLayersRef.current.clientHeight;
+  const applyImageSizing = useCallback(() => {
+    const imgEl = imageRef.current;
+    const containerEl = canvasLayersRef.current;
+    if (!imgEl || !containerEl) return;
 
-        const imageAspectRatio = 16 / 9;
-        const containerAspectRatio = containerWidth / containerHeight;
+    const { fullscreenExtension = 0, aspectRatio = 16 / 9 } = VIEWPORT_CONFIG;
 
-        let newWidth: number;
-        let newHeight: number;
+    if (showUiElements) {
+      const containerWidth = containerEl.clientWidth || 1;
+      const containerHeight = containerEl.clientHeight || 1;
+      const containerAspect = containerWidth / containerHeight;
 
-        if (imageAspectRatio > containerAspectRatio) {
-          newWidth = containerWidth;
-          newHeight = Math.round(containerWidth / imageAspectRatio);
-        } else {
-          newHeight = containerHeight;
-          newWidth = Math.round(containerHeight * imageAspectRatio);
-        }
+      let width: number;
+      let height: number;
 
-        imageRef.current.style.setProperty('--layer-img-height', `${newHeight}px`);
-        imageRef.current.style.setProperty('--layer-img-width', `${newWidth}px`);
+      if (aspectRatio > containerAspect) {
+        width = containerWidth;
+        height = Math.round(containerWidth / aspectRatio);
       } else {
-        imageRef.current.style.setProperty('--layer-img-height', 'auto');
-        imageRef.current.style.setProperty(
-          '--layer-img-width',
-          `calc(100% - ${VIEWPORT_CONFIG.fullscreenExtension}px)`
-        );
+        height = containerHeight;
+        width = Math.round(containerHeight * aspectRatio);
       }
+
+      imgEl.style.setProperty('--layer-img-width', `${width}px`);
+      imgEl.style.setProperty('--layer-img-height', `${height}px`);
+    } else {
+      imgEl.style.setProperty('--layer-img-width', `calc(100% - ${fullscreenExtension}px)`);
+      imgEl.style.setProperty('--layer-img-height', 'auto');
     }
   }, [canvasLayersRef, showUiElements]);
 
-  useEffect(() => {
-    handleWindowResize();
-  }, [handleWindowResize, showUiElements]);
+  useLayoutEffect(() => {
+    applyImageSizing();
+  }, [applyImageSizing]);
 
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
+  useLayoutEffect(() => {
+    window.addEventListener('resize', applyImageSizing);
 
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, [handleWindowResize]);
+    return () => window.removeEventListener('resize', applyImageSizing);
+  }, [applyImageSizing]);
 
-  if (!imageSrc) {
-    return null;
-  }
+  if (!src) return null;
 
   return (
     <CanvasLayerMaskImageBox
-      data-layer-type={layerType}
+      data-layer-type={type}
       style={
         {
-          '--layer-img-zindex': imageZIndex,
-          '--layer-img-translate-x': `${positionX}px`,
-          '--layer-img-translate-y': `${positionY}px`,
+          '--layer-img-zindex': zindex,
+          '--layer-img-translate-x': `${x}px`,
+          '--layer-img-translate-y': `${y}px`,
         } as React.CSSProperties
       }
     >
       <LayerMaskImage
-        ref={imageRef}
-        src={imageSrc}
-        loading="eager"
-        className={cn(imageClassName)}
-        crossOrigin="anonymous"
         alt=""
+        ref={imageRef}
+        src={src}
+        loading="eager"
+        className={className}
+        crossOrigin="anonymous"
+        draggable={false}
       />
     </CanvasLayerMaskImageBox>
   );
