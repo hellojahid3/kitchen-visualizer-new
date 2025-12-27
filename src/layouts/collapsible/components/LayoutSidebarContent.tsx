@@ -6,6 +6,16 @@ import { IconChevronRight } from '@/components/icons/icon-chevron-right';
 import { setSelections, toggleAccordion } from '@/features/visualizer/visualizerSlice';
 
 const LayoutSidebarContentWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
+export const LayoutSidebarContentInner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -196,75 +206,79 @@ export default function LayoutSidebarContent() {
 
   return (
     <LayoutSidebarContentWrapper>
-      {toolbars.map(toolbar => {
-        const isOpen = openedAccordionId === toolbar.id;
-        const currentSelection = selections[toolbar.uid as keyof typeof selections] || null;
-        const selectionItems = components[toolbar.uid as keyof typeof components] || [];
+      <LayoutSidebarContentInner>
+        {toolbars.map(toolbar => {
+          const isOpen = openedAccordionId === toolbar.id;
+          const currentSelection = selections[toolbar.uid as keyof typeof selections] || null;
+          const selectionItems = components[toolbar.uid as keyof typeof components] || [];
 
-        return (
-          <AccordionItemWrapper
-            key={toolbar.id}
-            $active={isOpen}
-          >
-            <AccordionTrigger
-              onClick={() => {
-                dispatch(toggleAccordion(toolbar.id));
-              }}
+          return (
+            <AccordionItemWrapper
+              key={toolbar.id}
+              $active={isOpen}
             >
-              <AccordionTriggerImageWrapper
-                $hide={isOpen}
-                $color={null}
+              <AccordionTrigger
+                onClick={() => {
+                  dispatch(toggleAccordion(toolbar.id));
+                }}
               >
-                {currentSelection?.thumbnailUrl && (
-                  <img
-                    src={currentSelection.thumbnailUrl}
-                    alt={currentSelection.name}
-                  />
-                )}
-              </AccordionTriggerImageWrapper>
-              <AccordionTriggerInfo $shifted={isOpen}>
-                <ItemCategoryLabel>{toolbar.name}</ItemCategoryLabel>
-                <ItemCategoryText $active={isOpen}>{currentSelection?.name || ''}</ItemCategoryText>
-              </AccordionTriggerInfo>
-              <AccordionTriggerIcon rotated={isOpen}>
-                <IconChevronRight size={18} />
-              </AccordionTriggerIcon>
-            </AccordionTrigger>
-            <AccordionContent $isOpen={isOpen}>
-              <AccordionContentInner $isOpen={isOpen}>
-                <SelectionGrid>
-                  {selectionItems.map(item => {
-                    const isSelected = currentSelection?.id === item.id;
+                <AccordionTriggerImageWrapper
+                  $hide={isOpen}
+                  $color={null}
+                >
+                  {currentSelection?.thumbnailUrl && (
+                    <img
+                      src={currentSelection.thumbnailUrl}
+                      alt={currentSelection.name}
+                    />
+                  )}
+                </AccordionTriggerImageWrapper>
+                <AccordionTriggerInfo $shifted={isOpen}>
+                  <ItemCategoryLabel>{toolbar.name}</ItemCategoryLabel>
+                  <ItemCategoryText $active={isOpen}>
+                    {currentSelection?.name || ''}
+                  </ItemCategoryText>
+                </AccordionTriggerInfo>
+                <AccordionTriggerIcon rotated={isOpen}>
+                  <IconChevronRight size={18} />
+                </AccordionTriggerIcon>
+              </AccordionTrigger>
+              <AccordionContent $isOpen={isOpen}>
+                <AccordionContentInner $isOpen={isOpen}>
+                  <SelectionGrid>
+                    {selectionItems.map(item => {
+                      const isSelected = currentSelection?.id === item.id;
 
-                    return (
-                      <GridOption
-                        key={item.id}
-                        $selected={isSelected}
-                        onClick={() => {
-                          dispatch(
-                            setSelections({
-                              [toolbar.uid]: item,
-                            })
-                          );
-                        }}
-                      >
-                        <OptionImage $color={null}>
-                          <img
-                            src={item.thumbnailUrl}
-                            alt={item.name}
-                          />
-                        </OptionImage>
-                        <OptionName>{item.name}</OptionName>
-                        <SelectedBadge $show={isSelected}>✓</SelectedBadge>
-                      </GridOption>
-                    );
-                  })}
-                </SelectionGrid>
-              </AccordionContentInner>
-            </AccordionContent>
-          </AccordionItemWrapper>
-        );
-      })}
+                      return (
+                        <GridOption
+                          key={item.id}
+                          $selected={isSelected}
+                          onClick={() => {
+                            dispatch(
+                              setSelections({
+                                [toolbar.uid]: item,
+                              })
+                            );
+                          }}
+                        >
+                          <OptionImage $color={null}>
+                            <img
+                              src={item.thumbnailUrl}
+                              alt={item.name}
+                            />
+                          </OptionImage>
+                          <OptionName>{item.name}</OptionName>
+                          <SelectedBadge $show={isSelected}>✓</SelectedBadge>
+                        </GridOption>
+                      );
+                    })}
+                  </SelectionGrid>
+                </AccordionContentInner>
+              </AccordionContent>
+            </AccordionItemWrapper>
+          );
+        })}
+      </LayoutSidebarContentInner>
     </LayoutSidebarContentWrapper>
   );
 }

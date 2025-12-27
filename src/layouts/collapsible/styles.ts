@@ -13,27 +13,21 @@ export const LayoutWrapper = styled.div`
   }
 `;
 
-export const LayoutSidebarWrapper = styled.aside`
+export const LayoutSidebar = styled.aside`
+  display: flex;
+  flex-direction: column;
   background-color: rgb(var(--kv-sidebar-background));
   width: 25%;
   height: 100%;
   min-width: 400px;
   max-width: 380px;
   box-sizing: border-box;
-  overflow-y: auto;
 
   @media (max-width: 992px) {
     width: 100%;
     max-width: none;
     min-width: 0;
   }
-`;
-
-export const LayoutSidebar = styled.aside`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
 `;
 
 export const LayoutSidebarHeaderContent = styled.header`

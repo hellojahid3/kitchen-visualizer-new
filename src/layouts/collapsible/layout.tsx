@@ -21,7 +21,6 @@ import {
   LayoutContentInnerWrapper,
   LayoutContentWrapper,
   LayoutSidebar,
-  LayoutSidebarWrapper,
   LayoutWrapper,
 } from './styles';
 
@@ -71,12 +70,10 @@ export default function VisualizerCollapsibleLayout() {
   return (
     <LayoutWrapper>
       <Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
-        <LayoutSidebarWrapper>
-          <LayoutSidebar>
-            <LayoutSidebarHeader />
-            <LayoutSidebarContent />
-          </LayoutSidebar>
-        </LayoutSidebarWrapper>
+        <LayoutSidebar>
+          <LayoutSidebarHeader />
+          <LayoutSidebarContent />
+        </LayoutSidebar>
       </Activity>
 
       <LayoutContentWrapper>
