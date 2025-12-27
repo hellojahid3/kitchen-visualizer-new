@@ -1,58 +1,12 @@
-import styled from 'styled-components';
-
 import { Button } from './button';
-
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(var(--kv-body-background));
-  height: 100%;
-  padding: 1rem;
-  z-index: 999;
-`;
-
-const CenterWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-`;
-
-const TextCenter = styled.div`
-  text-align: center;
-  max-width: 500px;
-`;
-
-const ErrorHeading = styled.h1`
-  font-size: 4rem;
-  font-weight: 900;
-  line-height: 1;
-  color: #e5e7eb;
-
-  @media (min-width: 768px) {
-    font-size: 9rem;
-  }
-`;
-
-const ErrorMessage = styled.p`
-  color: #6b7280;
-  font-size: 1rem;
-  line-height: 1.3em;
-  margin-bottom: 1.25rem;
-
-  @media (min-width: 768px) {
-    font-size: 1.125rem;
-  }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
+import {
+  ErrorButtonGroup,
+  ErrorCentered,
+  ErrorHeading,
+  ErrorInner,
+  ErrorMessage,
+  ErrorWrapper,
+} from './visualizer-error.styled';
 
 interface VisualizerErrorProps {
   onRetry?: () => void;
@@ -70,12 +24,12 @@ export default function VisualizerError({
   };
 
   return (
-    <Container>
-      <CenterWrapper>
-        <TextCenter>
+    <ErrorWrapper>
+      <ErrorInner>
+        <ErrorCentered>
           <ErrorHeading>{title}</ErrorHeading>
           <ErrorMessage>{message}</ErrorMessage>
-          <ButtonGroup>
+          <ErrorButtonGroup>
             {onRetry && <Button onClick={onRetry}>Try Again &rarr;</Button>}
             <Button
               onClick={handleRefresh}
@@ -88,9 +42,9 @@ export default function VisualizerError({
             >
               Refresh Page
             </Button>
-          </ButtonGroup>
-        </TextCenter>
-      </CenterWrapper>
-    </Container>
+          </ErrorButtonGroup>
+        </ErrorCentered>
+      </ErrorInner>
+    </ErrorWrapper>
   );
 }

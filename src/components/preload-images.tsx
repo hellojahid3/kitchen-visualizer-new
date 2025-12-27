@@ -1,16 +1,4 @@
-import styled from 'styled-components';
-
-const PreloadImagesWrapper = styled.div`
-  position: absolute;
-  display: none;
-  top: -9999px;
-  left: -9999px;
-  visibility: hidden;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-`;
+import { PreloadImagesWrapper } from './preload-images.styled';
 
 type PreloadImagesProps = {
   urls: string[];

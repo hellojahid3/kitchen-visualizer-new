@@ -2,64 +2,23 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { CSSProperties } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
-import styled from 'styled-components';
 import type z from 'zod';
 
 import { useSaveProjectMutation } from '@/features/visualizer/visualizerApi';
 import { projectSchema } from '@/lib/validation';
 import { Button } from './button';
 import { Popup } from './popup';
+import {
+  ProjectSaveErrorIcon,
+  ProjectSaveErrorMessage,
+  ProjectSaveErrorWrapper,
+  ProjectSaveForm,
+} from './project-save-popup.styled';
 import { TextInput } from './text-input';
-
-const ProjectSaveForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-`;
-
-const ProjectPreviewImageWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 200px;
-  background-color: rgb(var(--kv-project-preview-bg));
-  border-radius: 0.875rem;
-  margin-bottom: 1rem;
-`;
-
-const ProjectPreviewImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 0.875rem;
-`;
-
-const ErrorWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: #000000;
-  background-color: rgb(var(--kv-project-preview-bg));
-  padding: 1rem;
-  border-radius: 0.125rem;
-`;
-
-const ErrorIcon = styled.div`
-  display: block;
-  color: #f93d5c;
-  font-size: 1.25rem;
-  line-height: 1em;
-  margin-top: -0.25rem;
-  margin-right: 0.25rem;
-`;
-
-const ErrorMessage = styled.p`
-  font-size: 0.875rem;
-  line-height: 1.4em;
-  margin-bottom: 0;
-`;
+import {
+  ProjectPreviewImage,
+  ProjectPreviewImageWrapper,
+} from './visualizer-selected-components.styled';
 
 type ProjectSavePopupProps = {
   open: boolean;
@@ -113,10 +72,12 @@ export default function ProjectSavePopup({ open, onClose }: ProjectSavePopupProp
         onSubmit={form.handleSubmit(handleSave)}
       >
         {error && (
-          <ErrorWrapper>
-            <ErrorIcon>⚠️</ErrorIcon>
-            <ErrorMessage>Failed to save project. Please try again later.</ErrorMessage>
-          </ErrorWrapper>
+          <ProjectSaveErrorWrapper>
+            <ProjectSaveErrorIcon>⚠️</ProjectSaveErrorIcon>
+            <ProjectSaveErrorMessage>
+              Failed to save project. Please try again later.
+            </ProjectSaveErrorMessage>
+          </ProjectSaveErrorWrapper>
         )}
 
         <TextInput
