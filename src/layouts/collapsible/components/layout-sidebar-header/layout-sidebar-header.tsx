@@ -48,6 +48,7 @@ export const LayoutSidebarHeader = () => {
       <VisualizerSelectedComponents
         open={isSelectedComponentsOpen}
         onClose={handleSelectedComponentsPopupClose}
+        onProjectSavePopupOpen={handleProjectSavePopupOpen}
       />
 
       <ProjectSavePopup

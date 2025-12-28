@@ -19,11 +19,13 @@ import {
 export type VisualizerSelectedComponentsProps = {
   open: boolean;
   onClose: () => void;
+  onProjectSavePopupOpen: () => void;
 };
 
 export const VisualizerSelectedComponents = ({
   open,
   onClose,
+  onProjectSavePopupOpen,
 }: VisualizerSelectedComponentsProps) => {
   const selections = useSelector((state: RootState) => state.visualizer.selections);
 
@@ -70,6 +72,7 @@ export const VisualizerSelectedComponents = ({
             '--kv-button-padding': '0.875rem',
           } as CSSProperties
         }
+        onClick={onProjectSavePopupOpen}
       >
         Request My Summary
       </Button>
