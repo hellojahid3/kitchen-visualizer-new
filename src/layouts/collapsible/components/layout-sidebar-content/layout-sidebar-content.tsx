@@ -64,7 +64,7 @@ export const LayoutSidebarContent = () => {
                     {currentSelection?.name || ''}
                   </SidebarItemTriggerText>
                 </SidebarItemTriggerContentBox>
-                <SidebarItemTriggerIcon rotated={isOpen}>
+                <SidebarItemTriggerIcon $rotated={isOpen}>
                   <IconChevronRight size={18} />
                 </SidebarItemTriggerIcon>
               </SidebarItemTrigger>

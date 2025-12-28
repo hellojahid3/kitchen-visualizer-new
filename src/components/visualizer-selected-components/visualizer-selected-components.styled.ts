@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const ProjectPreviewImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 200px;
+  max-height: 200px;
   background-color: rgb(var(--kv-project-preview-bg));
   border-radius: 0.875rem;
   margin-bottom: 1rem;
@@ -84,5 +84,30 @@ export const ComponentItemEditBtn = styled.button`
     border-color: rgb(var(--kv-color-accent));
     color: rgb(var(--kv-button-hover-color-rgb));
     background: rgb(var(--kv-button-color-rgb));
+  }
+`;
+
+const loadingAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const VisualizerSelectedComponentsLoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+`;
+
+export const VisualizerSelectedComponentsLoadingIcon = styled.div`
+  display: inline-flex;
+  color: currentColor;
+
+  svg {
+    animation: ${loadingAnimation} 0.6s linear infinite;
   }
 `;

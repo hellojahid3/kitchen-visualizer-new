@@ -104,14 +104,14 @@ export const SidebarItemTriggerText = styled.h3<{ $active?: boolean }>`
   transition: color 0.3s ease;
 `;
 
-export const SidebarItemTriggerIcon = styled.div<{ rotated: boolean }>`
+export const SidebarItemTriggerIcon = styled.div<{ $rotated?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${props =>
-    props.rotated ? 'rgb(var(--kv-color-accent))' : 'rgb(var(--kv-color-secondary))'};
+    props.$rotated ? 'rgb(var(--kv-color-accent))' : 'rgb(var(--kv-color-secondary))'};
   transition: transform 0.3s ease;
-  transform: rotate(${props => (props.rotated ? '90deg' : '0deg')});
+  transform: rotate(${props => (props.$rotated ? '90deg' : '0deg')});
   opacity: 0.5;
 `;
 

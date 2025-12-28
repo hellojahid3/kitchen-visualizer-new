@@ -24,7 +24,7 @@ import {
   LayoutWrapper,
 } from './layout.styled';
 
-export default function VisualizerCollapsibleLayout() {
+export const VisualizerCollapsibleLayout = () => {
   const visualizer = useSelector((state: RootState) => state.visualizer);
   const canvasRef = useRef<HTMLDivElement>(null);
   const canvasLayersRef = useRef<HTMLDivElement>(null);
@@ -71,7 +71,7 @@ export default function VisualizerCollapsibleLayout() {
     <LayoutWrapper>
       <Activity mode={visualizer.showUiElements ? 'visible' : 'hidden'}>
         <LayoutSidebar>
-          <LayoutSidebarHeader />
+          <LayoutSidebarHeader canvasLayersRef={canvasLayersRef} />
           <LayoutSidebarContent />
         </LayoutSidebar>
       </Activity>
@@ -116,4 +116,4 @@ export default function VisualizerCollapsibleLayout() {
       </LayoutContentWrapper>
     </LayoutWrapper>
   );
-}
+};
