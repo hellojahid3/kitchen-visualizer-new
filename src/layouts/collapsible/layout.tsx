@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
 import type { Position } from '@/types';
-import CanvasLayers from './components/CanvasLayers';
-import LayoutSidebarContent from './components/LayoutSidebarContent';
-import LayoutSidebarHeader from './components/LayoutSidebarHeader';
-import UIControls from './components/UIControls';
-import UIToggleControl from './components/UIToggleControl';
+import { CanvasLayers } from './components/canvas-layers';
+import { LayoutSidebarContent } from './components/layout-sidebar-content';
+import { LayoutSidebarHeader } from './components/layout-sidebar-header';
+import { UIControls } from './components/ui-controls';
+import { UIToggleControl } from './components/ui-toggle-control';
 import { useContainerSize } from './hook/use-container-size';
 import { useNonPassiveWheel } from './hook/use-non-passive-wheel';
 import { usePan } from './hook/use-pan';

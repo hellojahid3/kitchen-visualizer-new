@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
 import { setShowUiElements } from '@/features/visualizer/visualizerSlice';
-import { UIToggleControlButton, UIToggleControlWrapper } from './UIToggleControl.styled';
+import { UIToggleControlButton, UIToggleControlWrapper } from './ui-toggle-control.styled';
 
-export default function UIToggleControl() {
+export const UIToggleControl = () => {
   const dispatch = useDispatch();
   const { showUiElements } = useSelector((state: RootState) => state.visualizer);
 
@@ -62,4 +62,4 @@ export default function UIToggleControl() {
       </UIToggleControlButton>
     </UIToggleControlWrapper>
   );
-}
+};

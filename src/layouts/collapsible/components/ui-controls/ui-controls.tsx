@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
 import { IconChevronLeft } from '@/components/icons/icon-chevron-left';
 import { setIsPanMode } from '@/features/visualizer/visualizerSlice';
-import ControlButton from './ControlButton';
+import { ControlButton } from '../control-button';
 import {
   UIControlCollapsibleGroup,
   UIControlsWrapper,
   UIControlToggleBtn,
   UIControlToggleIcon,
   UIControlUnifiedBar,
-} from './UIControls.styled';
+} from './ui-controls.styled';
 
 type UIControlsProps = {
   resetView: () => void;
@@ -19,7 +19,7 @@ type UIControlsProps = {
   scale: number;
 };
 
-export default function UIControls({ resetView, handleZoom, scale }: UIControlsProps) {
+export const UIControls = ({ resetView, handleZoom, scale }: UIControlsProps) => {
   const dispatch = useDispatch();
   const [uiControlsGroup, setUiControlsGroup] = useState(false);
   const isPanMode = useSelector((state: RootState) => state.visualizer.isPanMode);
@@ -136,4 +136,4 @@ export default function UIControls({ resetView, handleZoom, scale }: UIControlsP
       </UIControlUnifiedBar>
     </UIControlsWrapper>
   );
-}
+};

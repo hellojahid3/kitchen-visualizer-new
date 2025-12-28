@@ -2,8 +2,8 @@ import { useCallback, useLayoutEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
-import { VIEWPORT_CONFIG } from '../config';
-import { CanvasLayerMaskImageBox, LayerMaskImage } from './CanvasLayerMaskImage.styled';
+import { VIEWPORT_CONFIG } from '../../config';
+import { CanvasLayerMaskImageBox, LayerMaskImage } from './canvas-layer-mask-image.styled';
 
 type CanvasLayerMaskImageProps = {
   canvasLayersRef: React.RefObject<HTMLDivElement | null>;
@@ -15,7 +15,7 @@ type CanvasLayerMaskImageProps = {
   y?: number;
 };
 
-export default function CanvasLayerMaskImage({
+export const CanvasLayerMaskImage = ({
   type = 'default',
   src,
   zindex,
@@ -23,7 +23,7 @@ export default function CanvasLayerMaskImage({
   x = 0,
   y = 0,
   canvasLayersRef,
-}: CanvasLayerMaskImageProps) {
+}: CanvasLayerMaskImageProps) => {
   const showUiElements = useSelector((state: RootState) => state.visualizer.showUiElements);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
@@ -92,4 +92,4 @@ export default function CanvasLayerMaskImage({
       />
     </CanvasLayerMaskImageBox>
   );
-}
+};

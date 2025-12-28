@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
 import { layerOrders, visualLayerIndex } from '@/lib/constants';
 import type { Position, Selection } from '@/types';
-import CanvasLayerMaskImage from './CanvasLayerMaskImage';
-import { CanvasLayersWrapper } from './CanvasLayers.styled';
+import { CanvasLayerMaskImage } from '../canvas-layer-mask-image';
+import { CanvasLayersWrapper } from './canvas-layers.styled';
 
 type CanvasLayersProps = {
   canvasLayersRef: React.RefObject<HTMLDivElement | null>;
   globalOffset: Position;
 };
 
-export default function CanvasLayers({ canvasLayersRef, globalOffset }: CanvasLayersProps) {
+export const CanvasLayers = ({ canvasLayersRef, globalOffset }: CanvasLayersProps) => {
   const kitchen = useSelector((state: RootState) => state.kitchen);
   const selections = useSelector((state: RootState) => state.visualizer.selections);
 
@@ -46,4 +46,4 @@ export default function CanvasLayers({ canvasLayersRef, globalOffset }: CanvasLa
       })}
     </CanvasLayersWrapper>
   );
-}
+};

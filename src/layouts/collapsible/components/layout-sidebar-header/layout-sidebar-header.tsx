@@ -5,9 +5,9 @@ import { IconEdit } from '@/components/icons/icon-edit';
 import { ProjectSavePopup } from '@/components/project-save-popup';
 import { Button } from '@/components/ui/button';
 import { VisualizerSelectedComponents } from '@/components/visualizer-selected-components';
-import { LayoutSidebarHeaderContent } from './LayoutSidebarHeader.styled';
+import { LayoutSidebarHeaderContent } from './layout-sidebar-header.styled';
 
-export default function LayoutSidebarHeader() {
+export const LayoutSidebarHeader = () => {
   const [isSelectedComponentsOpen, setIsSelectedComponentsOpen] = useState(false);
   const [isProjectSavePopupOpen, setIsProjectSavePopupOpen] = useState(false);
 
@@ -56,4 +56,4 @@ export default function LayoutSidebarHeader() {
       />
     </LayoutSidebarHeaderContent>
   );
-}
+};

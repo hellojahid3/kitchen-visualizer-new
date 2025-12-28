@@ -1,8 +1,8 @@
 import { type ComponentProps, forwardRef } from 'react';
 
-import { ControlButtonStyled } from './ControlButton.styled';
+import { ControlButtonStyled } from './control-button.styled';
 
-const ControlButton = forwardRef<
+export const ControlButton = forwardRef<
   HTMLButtonElement,
   {
     isActive?: boolean;
@@ -16,5 +16,3 @@ const ControlButton = forwardRef<
     />
   );
 });
-
-export default ControlButton;

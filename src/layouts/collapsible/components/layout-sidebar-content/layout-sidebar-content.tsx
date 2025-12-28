@@ -20,9 +20,9 @@ import {
   SidebarItemTriggerLabel,
   SidebarItemTriggerText,
   SidebarItemWrapper,
-} from './LayoutSidebarContent.styled';
+} from './layout-sidebar-content.styled';
 
-export default function LayoutSidebarContent() {
+export const LayoutSidebarContent = () => {
   const dispatch = useDispatch();
   const toolbars = useSelector((state: RootState) => state.visualizer.toolbars);
   const selections = useSelector((state: RootState) => state.visualizer.selections);
@@ -107,4 +107,4 @@ export default function LayoutSidebarContent() {
       </SidebarContentInner>
     </SidebarContentWrapper>
   );
-}
+};
