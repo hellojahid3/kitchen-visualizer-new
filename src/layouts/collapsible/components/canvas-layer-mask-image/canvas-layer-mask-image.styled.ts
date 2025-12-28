@@ -15,7 +15,7 @@ export const CanvasLayerMaskImageBox = styled.div`
   touch-action: none;
   pointer-events: none;
   opacity: var(--layer-img-opacity, 1);
-  z-index: var(--layer-img-zindex, 10);
+  z-index: var(--layer-img-zindex, 0);
 `;
 
 export const LayerMaskImage = styled.img`
