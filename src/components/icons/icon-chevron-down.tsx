@@ -2,7 +2,7 @@ interface IconChevronDownProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export function IconChevronDown({ size = 24, ...props }: IconChevronDownProps) {
+export const IconChevronDown = ({ size = 24, ...props }: IconChevronDownProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,4 +19,4 @@ export function IconChevronDown({ size = 24, ...props }: IconChevronDownProps) {
       <path d="m6 9 6 6 6-6" />
     </svg>
   );
-}
+};

@@ -2,7 +2,7 @@ interface IconXProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export function IconX({ size = 24, ...props }: IconXProps) {
+export const IconX = ({ size = 24, ...props }: IconXProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +20,4 @@ export function IconX({ size = 24, ...props }: IconXProps) {
       <path d="m6 6 12 12" />
     </svg>
   );
-}
+};

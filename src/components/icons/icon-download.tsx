@@ -2,7 +2,7 @@ interface IconDownloadProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export function IconDownload({ size = 24, ...props }: IconDownloadProps) {
+export const IconDownload = ({ size = 24, ...props }: IconDownloadProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ export function IconDownload({ size = 24, ...props }: IconDownloadProps) {
       <path d="M12 4l0 12" />
     </svg>
   );
-}
+};

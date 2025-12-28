@@ -2,7 +2,7 @@ export type IconLoadingSpinnerProps = React.SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-export function IconLoadingSpinner({ size = 24, ...props }: IconLoadingSpinnerProps) {
+export const IconLoadingSpinner = ({ size = 24, ...props }: IconLoadingSpinnerProps) => {
   return (
     <svg
       viewBox="0 0 36 36"
@@ -57,4 +57,4 @@ export function IconLoadingSpinner({ size = 24, ...props }: IconLoadingSpinnerPr
       </g>
     </svg>
   );
-}
+};

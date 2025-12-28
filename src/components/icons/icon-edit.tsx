@@ -2,7 +2,7 @@ interface IconEditProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
 }
 
-export function IconEdit({ size = 24, ...props }: IconEditProps) {
+export const IconEdit = ({ size = 24, ...props }: IconEditProps) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,4 +26,4 @@ export function IconEdit({ size = 24, ...props }: IconEditProps) {
       <path d="M16 5l3 3" />
     </svg>
   );
-}
+};

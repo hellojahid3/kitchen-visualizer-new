@@ -13,7 +13,7 @@ export type TextInputProps = React.ComponentProps<'input'> & {
   error?: string;
 };
 
-function TextInput({ id, className, type, label, error, ...props }: TextInputProps) {
+export const TextInput = ({ id, className, type, label, error, ...props }: TextInputProps) => {
   const generatedId = useId();
 
   return (
@@ -29,6 +29,4 @@ function TextInput({ id, className, type, label, error, ...props }: TextInputPro
       {error && <TextInputErrorMessage>{error}</TextInputErrorMessage>}
     </TextInputContainer>
   );
-}
-
-export { TextInput };
+};
