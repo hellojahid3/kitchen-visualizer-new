@@ -10,10 +10,10 @@ export interface VisualizerState {
   openProjectSave: boolean;
   openSelectedComponents: boolean;
   components: KitchenComponents;
+  toolbars: Toolbar[];
   hostpots: Hostpot[];
   selections: Selection;
   selectedSplashbackVariant: string;
-  toolbars: Toolbar[];
   openedAccordionId: string | null;
 }
 
@@ -35,6 +35,7 @@ const initialState: VisualizerState = {
     crownMoldings: [],
     appliances: [],
   },
+  toolbars: [],
   hostpots: [],
   selections: {
     stones: null,
@@ -50,7 +51,6 @@ const initialState: VisualizerState = {
     appliances: null,
   },
   selectedSplashbackVariant: 'None',
-  toolbars: [],
   openedAccordionId: null,
 };
 
@@ -66,6 +66,9 @@ export const visualizerSlice = createSlice({
     },
     setToolbars: (state, action: PayloadAction<VisualizerState['toolbars']>) => {
       state.toolbars = action.payload;
+    },
+    setHostpots: (state, action: PayloadAction<VisualizerState['hostpots']>) => {
+      state.hostpots = action.payload;
     },
     setSelections: (state, action: PayloadAction<Partial<VisualizerState['selections']>>) => {
       state.selections = {
@@ -91,6 +94,9 @@ export const visualizerSlice = createSlice({
     toggleAccordion: (state, action: PayloadAction<string>) => {
       state.openedAccordionId = state.openedAccordionId === action.payload ? null : action.payload;
     },
+    setSelectedSplashbackVariant: (state, action: PayloadAction<string>) => {
+      state.selectedSplashbackVariant = action.payload;
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(kitchenApi.endpoints.getKitchen.matchFulfilled, (state, action) => {
@@ -106,6 +112,7 @@ export const visualizerSlice = createSlice({
 export const {
   setComponents,
   setToolbars,
+  setHostpots,
   openAccordion,
   toggleAccordion,
   setSelections,
@@ -113,6 +120,7 @@ export const {
   setShowUiElements,
   setOpenProjectSave,
   setOpenSelectedComponents,
+  setSelectedSplashbackVariant,
 } = visualizerSlice.actions;
 
 export default visualizerSlice.reducer;

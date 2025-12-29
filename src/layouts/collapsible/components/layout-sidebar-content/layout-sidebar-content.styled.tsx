@@ -154,6 +154,10 @@ export const SidebarItemContentGridOption = styled.div<{ $selected?: boolean }>`
 `;
 
 export const SidebarItemContentGridOptionImage = styled.div<{ $color: string | null }>`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   aspect-ratio: 1;
   border-radius: 14px;

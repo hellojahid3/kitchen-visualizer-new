@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
-import { layerOrders, visualLayerIndex } from '@/lib/constants';
-import type { Position, Selection } from '@/types';
+import { layerOrders, splashbackToolbarUid, visualLayerIndex } from '@/lib/constants';
+import type { Position } from '@/types';
+import { getCurrentSelection, getSplashbackMaskUrl } from '../../utils';
 import { CanvasLayerMaskImage } from '../canvas-layer-mask-image';
 import { CanvasLayersWrapper } from './canvas-layers.styled';
 
@@ -13,7 +14,7 @@ type CanvasLayersProps = {
 
 export const CanvasLayers = ({ canvasLayersRef, globalOffset }: CanvasLayersProps) => {
   const kitchen = useSelector((state: RootState) => state.kitchen);
-  const selections = useSelector((state: RootState) => state.visualizer.selections);
+  const visualizerState = useSelector((state: RootState) => state.visualizer);
 
   return (
     <CanvasLayersWrapper ref={canvasLayersRef}>
@@ -29,7 +30,7 @@ export const CanvasLayers = ({ canvasLayersRef, globalOffset }: CanvasLayersProp
       )}
 
       {layerOrders.map(layer => {
-        const selection = selections[layer as keyof Selection];
+        const selection = getCurrentSelection(visualizerState.selections, layer);
         if (!selection?.maskImageUrl) return null;
 
         return (
@@ -44,6 +45,21 @@ export const CanvasLayers = ({ canvasLayersRef, globalOffset }: CanvasLayersProp
           />
         );
       })}
+
+      {visualizerState.selections[splashbackToolbarUid] && (
+        <CanvasLayerMaskImage
+          key={visualizerState.selections[splashbackToolbarUid]?.id}
+          canvasLayersRef={canvasLayersRef}
+          src={getSplashbackMaskUrl(
+            visualizerState.selections[splashbackToolbarUid],
+            visualizerState.selectedSplashbackVariant
+          )}
+          zindex={visualLayerIndex.splashbacks}
+          type={`splashbacks-${visualizerState.selectedSplashbackVariant}`}
+          x={globalOffset.x}
+          y={globalOffset.y}
+        />
+      )}
     </CanvasLayersWrapper>
   );
 };

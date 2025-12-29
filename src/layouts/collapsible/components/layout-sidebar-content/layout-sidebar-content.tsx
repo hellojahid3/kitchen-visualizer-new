@@ -2,7 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { type RootState } from '@/app/store';
 import { IconChevronRight } from '@/components/icons/icon-chevron-right';
-import { setSelections, toggleAccordion } from '@/features/visualizer/visualizerSlice';
+import {
+  setSelectedSplashbackVariant,
+  setSelections,
+  toggleAccordion,
+} from '@/features/visualizer/visualizerSlice';
+import { splashbackToolbarUid, splashbackVariantIcons, splashbackVariants } from '@/lib/constants';
+import type { Component, Splashback } from '@/types';
+import { getCurrentSelection, getFirstSplashback, getSelectionItems } from '../../utils';
 import {
   SidebarContentInner,
   SidebarContentWrapper,
@@ -24,29 +31,50 @@ import {
 
 export const LayoutSidebarContent = () => {
   const dispatch = useDispatch();
-  const toolbars = useSelector((state: RootState) => state.visualizer.toolbars);
-  const selections = useSelector((state: RootState) => state.visualizer.selections);
-  const components = useSelector((state: RootState) => state.visualizer.components);
-  const openedAccordionId = useSelector((state: RootState) => state.visualizer.openedAccordionId);
+  const visualizerState = useSelector((state: RootState) => state.visualizer);
+
+  const handleToggleAccordion = (toolbarUid: string) => {
+    return () => {
+      dispatch(toggleAccordion(toolbarUid));
+    };
+  };
+
+  const handleSelectSplashbackVariant = (variant: string) => {
+    return () => {
+      dispatch(setSelectedSplashbackVariant(variant));
+      dispatch(
+        setSelections({
+          splashbacks: getFirstSplashback(visualizerState.components.splashbacks),
+        })
+      );
+    };
+  };
+
+  const handleSelectSelection = (toolbarUid: string, selection: Component | Splashback) => {
+    return () => {
+      dispatch(
+        setSelections({
+          [toolbarUid]: selection,
+        })
+      );
+    };
+  };
 
   return (
     <SidebarContentWrapper>
       <SidebarContentInner>
-        {toolbars.map(toolbar => {
-          const isOpen = openedAccordionId === toolbar.uid;
-          const currentSelection = selections[toolbar.uid as keyof typeof selections] || null;
-          const selectionItems = components[toolbar.uid as keyof typeof components] || [];
+        {visualizerState.toolbars.map(toolbar => {
+          const isOpen = visualizerState.openedAccordionId === toolbar.uid;
+          const isSplashback = toolbar.uid === splashbackToolbarUid;
+          const currentSelection = getCurrentSelection(visualizerState.selections, toolbar.uid);
+          const selectionItems = getSelectionItems(visualizerState.components, toolbar.uid);
 
           return (
             <SidebarItemWrapper
               key={toolbar.uid}
               $active={isOpen}
             >
-              <SidebarItemTrigger
-                onClick={() => {
-                  dispatch(toggleAccordion(toolbar.uid));
-                }}
-              >
+              <SidebarItemTrigger onClick={handleToggleAccordion(toolbar.uid)}>
                 <SidebarItemTriggerImageBox
                   $hide={isOpen}
                   $color={null}
@@ -71,33 +99,51 @@ export const LayoutSidebarContent = () => {
               <SidebarItemContent $isOpen={isOpen}>
                 <SidebarItemContentInner $isOpen={isOpen}>
                   <SidebarItemContentGrid>
-                    {selectionItems.map(item => {
-                      const isSelected = currentSelection?.id === item.id;
+                    {isSplashback
+                      ? Object.entries(splashbackVariants).map(([key, name]) => {
+                          const isSelected = visualizerState.selectedSplashbackVariant === key;
+                          const IconComponent =
+                            splashbackVariantIcons[key as keyof typeof splashbackVariantIcons];
 
-                      return (
-                        <SidebarItemContentGridOption
-                          key={item.id}
-                          $selected={isSelected}
-                          onClick={() => {
-                            dispatch(
-                              setSelections({
-                                [toolbar.uid]: item,
-                              })
-                            );
-                          }}
-                        >
-                          <SidebarItemContentGridOptionImage $color={null}>
-                            <img
-                              src={item.thumbnailUrl}
-                              alt={item.name}
-                            />
-                          </SidebarItemContentGridOptionImage>
-                          <SidebarItemContentGridOptionName>
-                            {item.name}
-                          </SidebarItemContentGridOptionName>
-                        </SidebarItemContentGridOption>
-                      );
-                    })}
+                          return (
+                            <SidebarItemContentGridOption
+                              key={key}
+                              $selected={isSelected}
+                              onClick={handleSelectSplashbackVariant(key)}
+                            >
+                              <SidebarItemContentGridOptionImage $color={null}>
+                                <IconComponent
+                                  size={80}
+                                  color="rgb(var(--kv-color-accent))"
+                                />
+                              </SidebarItemContentGridOptionImage>
+                              <SidebarItemContentGridOptionName>
+                                {name}
+                              </SidebarItemContentGridOptionName>
+                            </SidebarItemContentGridOption>
+                          );
+                        })
+                      : selectionItems.map(item => {
+                          const isSelected = currentSelection?.id === item.id;
+
+                          return (
+                            <SidebarItemContentGridOption
+                              key={item.id}
+                              $selected={isSelected}
+                              onClick={handleSelectSelection(toolbar.uid, item)}
+                            >
+                              <SidebarItemContentGridOptionImage $color={null}>
+                                <img
+                                  src={item.thumbnailUrl}
+                                  alt={item.name}
+                                />
+                              </SidebarItemContentGridOptionImage>
+                              <SidebarItemContentGridOptionName>
+                                {item.name}
+                              </SidebarItemContentGridOptionName>
+                            </SidebarItemContentGridOption>
+                          );
+                        })}
                   </SidebarItemContentGrid>
                 </SidebarItemContentInner>
               </SidebarItemContent>
