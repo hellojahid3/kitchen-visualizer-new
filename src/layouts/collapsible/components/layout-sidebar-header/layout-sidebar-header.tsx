@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { IconDownload } from '@/components/icons/icon-download';
 import { IconEdit } from '@/components/icons/icon-edit';
-import { ProjectSavePopup } from '@/components/project-save-popup';
 import { Button } from '@/components/ui/button';
+import { ProjectSavePopup } from '@/layouts/collapsible/components/project-save-popup';
 import { VisualizerSelectedComponents } from '../../components/visualizer-selected-components';
 import { useScreenshotBase64 } from '../../hook/use-screenshot-base64';
 import { LayoutSidebarHeaderContent } from './layout-sidebar-header.styled';
