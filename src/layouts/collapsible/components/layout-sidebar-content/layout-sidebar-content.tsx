@@ -33,18 +33,18 @@ export const LayoutSidebarContent = () => {
     <SidebarContentWrapper>
       <SidebarContentInner>
         {toolbars.map(toolbar => {
-          const isOpen = openedAccordionId === toolbar.id;
+          const isOpen = openedAccordionId === toolbar.uid;
           const currentSelection = selections[toolbar.uid as keyof typeof selections] || null;
           const selectionItems = components[toolbar.uid as keyof typeof components] || [];
 
           return (
             <SidebarItemWrapper
-              key={toolbar.id}
+              key={toolbar.uid}
               $active={isOpen}
             >
               <SidebarItemTrigger
                 onClick={() => {
-                  dispatch(toggleAccordion(toolbar.id));
+                  dispatch(toggleAccordion(toolbar.uid));
                 }}
               >
                 <SidebarItemTriggerImageBox

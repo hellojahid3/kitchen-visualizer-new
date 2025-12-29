@@ -85,7 +85,10 @@ export const visualizerSlice = createSlice({
     setOpenSelectedComponents: (state, action: PayloadAction<boolean>) => {
       state.openSelectedComponents = action.payload;
     },
-    toggleAccordion: (state, action: PayloadAction<string | null>) => {
+    openAccordion: (state, action: PayloadAction<string>) => {
+      state.openedAccordionId = action.payload;
+    },
+    toggleAccordion: (state, action: PayloadAction<string>) => {
       state.openedAccordionId = state.openedAccordionId === action.payload ? null : action.payload;
     },
   },
@@ -103,6 +106,7 @@ export const visualizerSlice = createSlice({
 export const {
   setComponents,
   setToolbars,
+  openAccordion,
   toggleAccordion,
   setSelections,
   setIsPanMode,

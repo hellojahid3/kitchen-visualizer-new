@@ -1,10 +1,11 @@
 import type { CSSProperties } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import type { RootState } from '@/app/store';
 import { Button } from '@/components/ui/button';
 import { Popup } from '@/components/ui/popup';
 import { IconLoadingSpinner } from '@/components/visualizer-loading/icon-loading-spinner';
+import { openAccordion } from '@/features/visualizer/visualizerSlice';
 import {
   ComponentImg,
   ComponentInfo,
@@ -34,7 +35,13 @@ export const VisualizerSelectedComponents = ({
   loadingProjectImage,
   projectImageUrl,
 }: VisualizerSelectedComponentsProps) => {
+  const dispatch = useDispatch();
   const selections = useSelector((state: RootState) => state.visualizer.selections);
+
+  const handleEdit = (key: string) => {
+    dispatch(openAccordion(key));
+    onClose();
+  };
 
   return (
     <Popup
@@ -73,7 +80,7 @@ export const VisualizerSelectedComponents = ({
                     <ComponentInfoTitle>{key}</ComponentInfoTitle>
                     <ComponentInfoDescription>{selection.name}</ComponentInfoDescription>
                   </ComponentInfo>
-                  <ComponentItemEditBtn>Edit</ComponentItemEditBtn>
+                  <ComponentItemEditBtn onClick={() => handleEdit(key)}>Edit</ComponentItemEditBtn>
                 </ComponentItem>
               ) : null
             )}
