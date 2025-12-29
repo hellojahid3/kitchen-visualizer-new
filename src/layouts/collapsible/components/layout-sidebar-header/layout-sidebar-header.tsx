@@ -4,7 +4,7 @@ import { IconDownload } from '@/components/icons/icon-download';
 import { IconEdit } from '@/components/icons/icon-edit';
 import { ProjectSavePopup } from '@/components/project-save-popup';
 import { Button } from '@/components/ui/button';
-import { VisualizerSelectedComponents } from '@/components/visualizer-selected-components';
+import { VisualizerSelectedComponents } from '../../components/visualizer-selected-components';
 import { useScreenshotBase64 } from '../../hook/use-screenshot-base64';
 import { LayoutSidebarHeaderContent } from './layout-sidebar-header.styled';
 

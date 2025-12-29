@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
 import { Button } from '@/components/ui/button';
 import { Popup } from '@/components/ui/popup';
-import { IconLoadingSpinner } from '../visualizer-loading/icon-loading-spinner';
+import { IconLoadingSpinner } from '@/components/visualizer-loading/icon-loading-spinner';
 import {
   ComponentImg,
   ComponentInfo,
